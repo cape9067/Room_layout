@@ -1,0 +1,7 @@
+<h1>Bookmarked Rooms</h1>
+
+<% @user.bookmarked_rooms.each do |room| %>
+  <h2><%= link_to room.title, room_path(room) %></h2>
+  <p><%= room.description %></p>
+<% end %>
+

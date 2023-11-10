@@ -1,0 +1,13 @@
+<%= form_with(model: [:public, room]) do |f| %>
+
+  <%= f.label :部屋画像, class: "mr-4" %>
+  <%= f.file_field :image, class: "form-control-file image", accept: 'image/*' %>
+  
+  <%= f.label :投稿タイトル, class: "mr-4" %>
+  <%= f.text_field :title, placeholder: "タイトルを入力", class: "form-control name" %>
+  
+  <%= f.label :内容, class: "mr-4" %>
+  <%= f.text_field :body, placeholder: "内容を入力", class: "form-control name" %>
+
+    <%= f.submit :投稿, class: 'btn btn-success btn-lg' %>
+<% end %>
