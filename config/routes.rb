@@ -28,6 +28,7 @@ devise_scope :user do
     resources :rooms do
      resources :comments, only: [:create, :destroy]
      resource :likes, only: [:create, :destroy]
+     
     end
     
     resources :users, only: [:show, :edit, :update] do

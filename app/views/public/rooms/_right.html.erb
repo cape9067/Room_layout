@@ -1,0 +1,49 @@
+<div class="h3">
+	検索
+</div>
+
+<div class="h4">
+	<%= form_with method: :get, local: true do |f| %>
+    <%= f.text_field :query, placeholder: "Search" %>
+    <%= f.submit "検索" %>
+  <% end %>
+</div>
+	
+<div class="h3 mt-4">
+	カテゴリー
+</div>
+
+<div class="ml-4 h4">
+	<% categories.each do |category| %>
+	  <%= category.name %>
+	<% end %>
+</div>
+	
+<div class="h3 mt-4">
+	新着記事
+</div>
+
+<% rooms.each do |room| %>
+<div class="card mb-2">
+  <div class="row no-gutters">
+  	
+    <div class="col-md-5">
+    	<%= link_to public_room_path(room) do %>
+      <%= image_tag room.image, size: "200x140", class:"card-img" %>
+      <% end %>
+    </div>
+    <div class="col-md-7">
+      <div class="card-body">
+        <h5 class="card-title">
+        	<%= link_to public_room_path(room) do %>
+        	  <%= room.title %>
+        	<% end %>
+        	</h5>
+        <p class="card-text"><small class="text-muted"><%= room.created_at.strftime("%Y-%m-%d") %></small></p>
+        <p class="card-text"><small class="text-muted">posted by <%= room.user.name %></small></p>
+      </div>
+    </div>
+    
+  </div>
+</div>
+<% end %>

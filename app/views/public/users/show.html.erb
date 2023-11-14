@@ -1,17 +1,14 @@
 <div class="container-fluid">
   <div class="row m-3">
-    <div>
-      <%= @user.name %>さんのマイページ
-    </div>
-  </div>
 
-  <div class="row m-3">
+
+
     <div class="col-md-2 bg-dark text-white shadow text-center">
     <div>
       ニックネーム<br>
       <%= @user.name %>
     </div>
-    
+
     <div>
       メールアドレス<br>
       <%= @user.email %>
@@ -21,23 +18,32 @@
       <%= link_to '編集', edit_public_user_path(@user), class: "btn btn-primary" %>
     </div>
   </div>
-  
-  <div class="col-md-10">
-    <div>
+
+  <div class="col-md-7">
+    <div class=container>
+      <div>
+      <%= @user.name %>さんのマイページ
+    </div>
     <h3>投稿した部屋</h3>
-    <% @latest_rooms.each do |room| %>
-    <div class="mr-1">
-				<%= link_to public_room_path(room) do %>
-				  <%= image_tag room.image, size: "200x150" %>
-			  <% end %></br>
-			  <p class="ml-2 mt-2 font-weight-bold"><%= room.title %></p>
-			</div>
-		<% end %>
+    <div class="row">
+<% @latest_rooms.each do |room| %>
+  <div class="card ml-2 shadow-sm mr-1">
+  	<%= link_to public_room_path(room) do %>
+      <%= image_tag room.image, size: "300x250" %>
+    <% end %>
+    <div class="card-body">
+      <div class="">
+        <p class="card-title"><%= room.title %></p>
+      </div>
+     </div>
   </div>
-    
+  <% end %>
+  </div>
+
   <div>
     マイリスト
   </div>
 
   </div>
+</div>
 </div>

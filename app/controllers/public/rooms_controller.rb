@@ -4,6 +4,7 @@ class Public::RoomsController < ApplicationController
   # GET /rooms or /rooms.json
   def index
     @rooms = Room.all
+    @categories = Category.all
   end
 
   # GET /rooms/1 or /rooms/1.json
