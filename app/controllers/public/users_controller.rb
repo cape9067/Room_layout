@@ -4,6 +4,7 @@ class Public::UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @latest_rooms = Room.order(created_at: :desc).limit(4)
   end
 
   def edit
@@ -30,7 +31,7 @@ class Public::UsersController < ApplicationController
     def ensure_guest_user
     @user = User.find(params[:id])
     if @user.guest_user?
-      redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+      redirect_to public_user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
     end
     end  
 end

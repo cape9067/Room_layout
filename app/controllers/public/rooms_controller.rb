@@ -15,6 +15,7 @@ class Public::RoomsController < ApplicationController
   # GET /rooms/new
   def new
     @room = Room.new
+    @categories = Category.all
   end
 
   # GET /rooms/1/edit
@@ -28,6 +29,7 @@ class Public::RoomsController < ApplicationController
         flash[:success] = "投稿されました！"
       redirect_to public_rooms_path
       else
+        @categories = Category.all
         render 'new'
       end
   end
@@ -52,6 +54,6 @@ class Public::RoomsController < ApplicationController
 
   private
     def room_params
-      params.require(:room).permit(:image, :title, :body, :category_id)
+      params.require(:room).permit(:image, :title, :body, :category_id).merge(user_id: current_user.id)
     end
 end

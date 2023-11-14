@@ -1,6 +1,6 @@
-<h1><%= @room.name %> posted by <%= @room.user.name %></h1>
+<h1><%= @room.title %> posted by <%= @room.user.name %></h1>
 
-<%= @room.image %>
+<%= image_tag @room.image, size: "300x250" %>
 <%= @room.body %>
 
 <h2>Comments</h2>
@@ -13,18 +13,15 @@
 
 <% if current_user %>
         <% if current_user.bookmarks.exists?(room_id: @room.id) %>
-          <%= link_to 'Unbookmark', room_bookmark_path(@room, @room.bookmarks.find_by(user_id: current_user.id)), method: :delete, class: 'btn btn-danger' %>
+          <%= link_to 'Unbookmark', public_user_bookmark_path(@room, @room.bookmarks.find_by(user_id: current_user.id)), method: :delete, class: 'btn btn-danger' %>
         <% else %>
-          <%= link_to 'Bookmark', room_bookmarks_path(@room), method: :post, class: 'btn btn-primary' %>
+          <%= link_to 'Bookmark', public_user_bookmarks_path(@room), method: :post, class: 'btn btn-primary' %>
         <% end %>
         
-        <% if Like.exists?(ip_address: request.remote_ip, room_id: @room.id) %>
-  <%= link_to 'Unlike', room_like_path(@room, Like.find_by(ip_address: request.remote_ip, room_id: @room.id)), method: :delete, class: 'btn btn-danger' %>
-<% else %>
-  <%= link_to 'Like', room_likes_path(@room), method: :post, class: 'btn btn-primary' %>
+        <% if Like.exists?(ip: request.remote_ip, room_id: @room.id) %>
+          <%= link_to 'Unlike', public_room_path(@room, Like.find_by(ip_address: request.remote_ip, room_id: @room.id)), method: :delete, class: 'btn btn-danger' %>
+        <% else %>
+          <%= link_to 'Like', public_room_likes_path(@room), method: :post, class: 'btn btn-primary' %>
+        <% end %>
 <% end %>
 
-
-<%= link_to 'Edit', edit_room_path(@room) %>
-<%= link_to 'Destroy', public_room(@room), method: :delete, "data-confirm" => "Are you sure?" %>
-<%= link_to 'Back', public_rooms_path %>

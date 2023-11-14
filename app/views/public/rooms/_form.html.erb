@@ -1,4 +1,4 @@
-<%= form_with(model: [:public, room]) do |f| %>
+<%= form_with model: room, local:true do |f| %>
 
   <%= f.label :部屋画像, class: "mr-4" %>
   <%= f.file_field :image, class: "form-control-file image", accept: 'image/*' %>
@@ -8,6 +8,9 @@
   
   <%= f.label :内容, class: "mr-4" %>
   <%= f.text_field :body, placeholder: "内容を入力", class: "form-control name" %>
+  
+  <%= f.label :カテゴリー, class: "mr-4" %>
+  <%= f.select :category_id, options_for_select(@categories.map { |c| [c.name, c.id] }), {include_blank: '--選択してください--'}, {class: "form-control"} %>
 
     <%= f.submit :投稿, class: 'btn btn-success btn-lg' %>
 <% end %>
