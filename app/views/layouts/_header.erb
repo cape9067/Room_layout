@@ -1,55 +1,79 @@
-<header style= "background-color: #8C5A2B;", class="shadow">
+<header class="shadow">
 
     <div class="container-fluid">
 
-      <div class="col-1">
-       rogo
-      </div>
 
 
-      <div class="col-11">
-        <div class="row">
-          <div class="col-12">
-            <div class="d-flex justify-content-end mb-2">
-              <% if admin_signed_in? %>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="navbar-brand">
+        <%= link_to  root_path do %>
+                    ナビゲーションバー
+                  <% end %>
+                  </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="ナビゲーションの切替">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar-header">
+        <ul class="navbar-nav mr-auto">
+          <% if admin_signed_in? %>
                 <%= render 'layouts/admin_header' %>
               <% elsif user_signed_in? %>
-                <li class="d-flex mr-4">
-                  <%= link_to public_user_path(current_user), class: "btn btn-danger" do %>
+          <li class="nav-item dropdown">
+            <div class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              <%= link_to public_user_path(current_user) do %>
                     マイページ
                   <% end %>
-                </li>
-                <li class="d-flex mr-4">
-                  <%= link_to  public_rooms_path, class: "btn btn-danger" do %>
-                    投稿一覧
-                  <% end %>
-                </li>
-                <li class="d-flex mr-4">
-                  <%= link_to  public_user_bookmarks_path(current_user), class: "btn btn-danger" do %>
+                  </div>
+            <div class="dropdown-menu">
+              <div class="dropdown-item">
+                <%= link_to  public_user_bookmarks_path(current_user) do %>
                     マイリスト
                   <% end %>
-                </li>
-                <li class="d-flex">
-                  <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-danger" do %>
+                  </div>
+              <a class="dropdown-item" href="#">リンク2</a>
+              <a class="dropdown-item" href="#">リンク3</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-link">
+              <%= link_to  public_rooms_path do %>
+                    投稿一覧
+                  <% end %>
+                  </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">無効</a>
+          </li>
+          <li class="nav-item active">
+            <div class="nav-link">
+              <%= link_to destroy_user_session_path, method: :delete do %>
                     ログアウト
                   <% end %>
-                </li>
-              <% else %>
-                <li class="d-flex mr-4">
-                  <%= link_to new_user_registration_path,class: "btn btn-danger" do %>
+                  </div>
+          </li>
+          <% else %>
+          <li class="nav-item">
+            <div class="nav-link">
+              <%= link_to new_user_registration_path do %>
                     新規登録
                   <% end %>
-                </li>
-                <li class="d-flex">
-                  <%= link_to new_user_session_path ,class: "btn btn-danger" do %>
+                  </div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-link">
+              <%= link_to new_user_session_path do %>
                     ログイン
                   <% end %>
-                </li>
-              <% end %>
-            </div>
-          </div>
-        </div>
+                  </div>
+          </li>
+          <% end %>
+        </ul>
+        <form class="form-inline my-2 my-md-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="検索..." aria-label="検索...">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
+        </form>
       </div>
-    </div>
+    </nav>
   </div>
+
 </header>
