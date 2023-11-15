@@ -7,7 +7,7 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <div class="navbar-brand">
         <%= link_to  root_path do %>
-                    ナビゲーションバー
+                    へやもよう
                   <% end %>
                   </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="ナビゲーションの切替">
@@ -20,18 +20,19 @@
               <% elsif user_signed_in? %>
           <li class="nav-item dropdown">
             <div class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-              <%= link_to public_user_path(current_user) do %>
+                    <a href="#">マイページ</a>
+                  </div>
+            <div class="dropdown-menu">
+              <div class="dropdown-item">
+                <%= link_to public_user_path(current_user) do %>
                     マイページ
                   <% end %>
                   </div>
-            <div class="dropdown-menu">
               <div class="dropdown-item">
                 <%= link_to  public_user_bookmarks_path(current_user) do %>
                     マイリスト
                   <% end %>
                   </div>
-              <a class="dropdown-item" href="#">リンク2</a>
-              <a class="dropdown-item" href="#">リンク3</a>
             </div>
           </li>
           <li class="nav-item">
@@ -41,6 +42,19 @@
                   <% end %>
                   </div>
           </li>
+
+          <li class="nav-item">
+            <% if !current_user.email == "guest@example.com" %>
+            <div class="nav-link">
+              <%= link_to  new_public_room_path do %>
+                投稿する
+              <% end %>
+            </div>
+            <% else %>
+            <a class="nav-link disabled">投稿する</a>
+            <% end %>
+          </li>
+
           <li class="nav-item">
             <a class="nav-link disabled">無効</a>
           </li>

@@ -1,58 +1,23 @@
 <div class="container-fluid">
-	<div class="row">
+<div class="row">
 
 
-<div class="col-md-9 mt-4">
-	<div class="container">
-	<div class="row">
-<% @rooms.each do |room| %>
-  <div class="card mb-4 shadow mr-4">
-  	<%= link_to public_room_path(room) do %>
-      <%= image_tag room.image, size: "350x250", class:"p-1" %>
-    <% end %>
-    <div class="card-body">
-      <div class="">
-        <p class="card-title"><%= room.title %></p>
-        <p class="btn btn-secondary btn-sm text-white"><i class="fa-solid fa-tag"></i>️ <%= room.category.name %></p>
-        <p></p><small class="text-muted">投稿日：<%= room.created_at.strftime("%Y-%m-%d") %></small></p>
-      </div>
-     </div>
-     <div class="card-footer">
-      <% if current_user %>
-           <% if current_user.bookmarks.exists?(room_id: room.id) %>
-          <%= link_to public_user_bookmark_path(id: current_user.bookmarks.find_by(room_id: room.id).id, user_id: current_user.id, room_id: room.id), method: :delete do %>
-          <i class="fa-regular fa-folder"></i><%= room.bookmarks.count %>
-          <% end %>
-        <% else %>
-          <%= link_to public_user_bookmarks_path(user_id: current_user.id, room_id: room.id), method: :post do %>
-          <i class="fa-regular fa-folder"></i><%= room.bookmarks.count %>
-          <% end %>
-        <% end %>
+<div class="col-9 mt-4">
 
-<% if Like.exists?(ip: request.remote_ip, room_id: room.id) %>
-  <%= link_to public_room_likes_path(room, Like.find_by(ip: request.remote_ip, room_id: room.id)), method: :delete do %>
-    <i class="fa fa-heart unlike-btn"></i> <%= room.likes.count %>
-  <% end %>
-<% else %>
-  <%= link_to public_room_likes_path(room), method: :post do %>
-    <i class="fa fa-heart like-btn"></i> <%= room.likes.count %>
-  <% end %>
-<% end %>
-<% end %>
-
-     </div>
-
-  </div>
-<% end %>
-
+	<div class="row ml-5 pl-5">
+	  
+<%= render 'index', rooms: @rooms %>
 
 <br>
 
 <%= link_to 'New Room', new_public_room_path %>
-</div>
+
 </div>
 </div>
 
+
 <div class="col-md-3 bg-primary d-flex flex-column p-4">
 	<%= render 'right', categories: @categories, rooms: @rooms %>
+</div>
+</div>
 </div>

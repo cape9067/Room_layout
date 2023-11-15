@@ -10,4 +10,9 @@ class Room < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_one_attached :image
+  
+  def guest_user?
+    email == GUEST_USER_EMAIL
+  end
+  
 end

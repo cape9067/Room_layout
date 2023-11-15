@@ -1,17 +1,9 @@
-<%= form_with(model: [:public, like]) do |form| %>
-  <% if like.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(like.errors.count, "error") %> prohibited this like from being saved:</h2>
-
-      <ul>
-        <% like.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+<% if Like.exists?(ip: request.remote_ip, room_id: room.id) %>
+  <%= link_to public_room_likes_path(room, Like.find_by(ip: request.remote_ip, room_id: room.id)), method: :delete do %>
+    <i class="fa fa-heart unlike-btn"></i> <%= room.likes.count %>
   <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<% else %>
+  <%= link_to public_room_likes_path(room), method: :post do %>
+    <i class="fa fa-heart like-btn"></i> <%= room.likes.count %>
+  <% end %>
 <% end %>

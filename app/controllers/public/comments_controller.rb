@@ -3,15 +3,10 @@ class Public::CommentsController < ApplicationController
   
   def create
   @room = Room.find(params[:room_id])
-  @comment = @room.comments.new(comment_params)
-  @comment.user_id = current_user.id
-  if @comment.save
-    redirect_to request.referer
-  else
-    @room_new = Room.new
-    @comments = @room.comments
-    redirect_to new_room_path
-  end
+  @comment = current_user.comments.new(comment_params)
+  @comment.room_id = @room.id
+  @comment.save
+  redirect_to request.referer
   end
 
  def destroy
@@ -22,7 +17,9 @@ class Public::CommentsController < ApplicationController
  end
 
  private
+ 
  def comment_params
   params.require(:comment).permit(:comment)
  end
+ 
 end

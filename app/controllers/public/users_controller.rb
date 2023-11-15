@@ -4,7 +4,7 @@ class Public::UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @latest_rooms = Room.order(created_at: :desc).limit(4)
+    @latest_rooms = @user.rooms.order(created_at: :desc).limit(4)
   end
 
   def edit

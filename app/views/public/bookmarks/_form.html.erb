@@ -1,17 +1,9 @@
-<%= form_with(model: [:public, bookmark]) do |form| %>
-  <% if bookmark.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(bookmark.errors.count, "error") %> prohibited this bookmark from being saved:</h2>
-
-      <ul>
-        <% bookmark.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+<% if current_user.bookmarks.exists?(room_id: room.id) %>
+  <%= link_to public_user_bookmark_path(id: current_user.bookmarks.find_by(room_id: room.id).id, user_id: current_user.id, room_id: room.id), method: :delete do %>
+    <i class="fa-regular fa-folder"></i><%= room.bookmarks.count %>
   <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<% else %>
+  <%= link_to public_user_bookmarks_path(user_id: current_user.id, room_id: room.id), method: :post do %>
+    <i class="fa-regular fa-folder"></i><%= room.bookmarks.count %>
+  <% end %>
 <% end %>

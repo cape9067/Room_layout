@@ -1,5 +1,6 @@
 class Public::RoomsController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_guest_user, only: [:show]
 
   # GET /rooms or /rooms.json
   def index
@@ -11,6 +12,7 @@ class Public::RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @comments = @room.comments
+    @comment = Comment.new
   end
 
   # GET /rooms/new
@@ -48,13 +50,20 @@ class Public::RoomsController < ApplicationController
 
   def destroy
     flash[:success] = "投稿を削除しました。"
-    room = Room.find(params[:id])
-    room.destroy
-    redirect_to public_room_path(room)
+    @room = Room.find(params[:id])
+    @room.destroy
+    redirect_to public_rooms_path
   end
 
   private
     def room_params
       params.require(:room).permit(:image, :title, :body, :category_id).merge(user_id: current_user.id)
+    end
+
+    def ensure_guest_user
+    @user = current_user
+    if @user.guest_user?
+      @isGuest = true
+    end
     end
 end

@@ -1,10 +1,43 @@
-<h1><%= @room.title %> posted by <%= @room.user.name %></h1>
+
+<div class="row">
+
+<div class="col-md-5">
+  <div class="ml-5">
+
+  	<%= link_to public_room_path(@room) do %>
+      <%= image_tag @room.image, size: "600x400", class: "bg-white border shadow p-1 m-4" %>
+    <% end %>
+
+</div>
+</div>
 
 
-<%= image_tag @room.image, size: "300x250" %>
-<%= @room.body %>
+<div class="col-md-4 d-flex align-items-center">
+  <h3>改善する</h3>
+  <table class="table table-bordered bg-white">
+      <tr>
+        <th class="w-25">タイトル</th>
+        <td><%= @room.title %></td>
+      </tr>
+      <tr>
+        <th>投稿者</th>
+        <td><%= @room.user.name %></td>
+      </tr>
+      <tr>
+        <th>説明</th>
+        <td><%= @room.body %></td>
+      </tr>
+      <tr>
+        <th>投稿日</th>
+        <td><%= @room.created_at.strftime("%Y年%m月%d日") %></td>
+      </tr>
+  </table>
+</div>
 
-<h2>Comments</h2>
+</div>
+
+
+<p>コメント</p>
 <% @comments.each do |comment| %>
  <p>
    <strong><%= comment.user.name %>:</strong>
@@ -12,25 +45,26 @@
  </p>
 <% end %>
 
-<% if current_user %>
-        <% if current_user.bookmarks.exists?(room_id: @room.id) %>
-          <%= link_to public_user_bookmark_path(id: current_user.bookmarks.find_by(room_id: room.id).id,user_id: current_user.id, room_id: @room.id), method: :delete do %>
-          <i class="fa-regular fa-folder"></i><%= @room.bookmarks.count %>
-          <% end %>
-        <% else %>
-          <%= link_to public_user_bookmarks_path(user_id: current_user.id, room_id: @room.id), method: :post do %>
-          <i class="fa-regular fa-folder"></i><%= @room.bookmarks.count %>
-          <% end %>
-        <% end %>
 
-<% if Like.exists?(ip: request.remote_ip, room_id: @room.id) %>
-  <%= link_to public_room_likes_path(@room, Like.find_by(ip: request.remote_ip, room_id: @room.id)), method: :delete do %>
-    <i class="fa fa-heart unlike-btn"></i> <%= @room.likes.count %>
-  <% end %>
-<% else %>
-  <%= link_to public_room_likes_path(@room), method: :post do %>
-    <i class="fa fa-heart like-btn"></i> <%= @room.likes.count %>
-  <% end %>
+ <!-- コメントフォームのコード -->
+<div class="guest-form">
+<%= form_with model: [@room, @comment], url: public_room_path(@room), local: true do |f| %>
+  <%= f.text_area :comment, rows:'5', placeholder: "コメントをここに", class: "w-100" %>
+  <%= f.submit "送信" %>
 <% end %>
-<% end %>
+<div class="overlay">
+   <div class="message">コメントは会員限定です</div>
+ </div>
+ </div>
 
+<%= link_to "D", public_room_path(@room), method: :delete %>
+</div>
+</div>
+
+
+<script>
+ var isGuest = <%= @isGuest %>;
+ if (isGuest) {
+   document.querySelector('.guest-form .overlay').style.display = 'block';
+ }
+</script>
