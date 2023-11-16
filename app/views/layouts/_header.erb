@@ -28,11 +28,15 @@
                     マイページ
                   <% end %>
                   </div>
+                  <% if !current_user.email == "guest@example.com" %>
               <div class="dropdown-item">
                 <%= link_to  public_user_bookmarks_path(current_user) do %>
                     マイリスト
                   <% end %>
                   </div>
+                  <% else %>
+                  <a class="dropdown-item disabled">マイリスト</a>
+            <% end %>
             </div>
           </li>
           <li class="nav-item">
