@@ -17,14 +17,14 @@
         <ul class="navbar-nav mr-auto">
           <% if admin_signed_in? %>
                 <%= render 'layouts/admin_header' %>
-              <% elsif user_signed_in? %>
-          <li class="nav-item dropdown">
-            <div class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          <% elsif user_signed_in? %>
+            <li class="nav-item dropdown">
+              <div class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     <a href="#">マイページ</a>
                   </div>
-            <div class="dropdown-menu">
-              <div class="dropdown-item">
-                <%= link_to public_user_path(current_user) do %>
+              <div class="dropdown-menu">
+                <div class="dropdown-item">
+                  <%= link_to public_user_path(current_user) do %>
                     マイページ
                   <% end %>
                   </div>
@@ -36,17 +36,16 @@
                   </div>
                   <% else %>
                   <a class="dropdown-item disabled">マイリスト</a>
-            <% end %>
-            </div>
-          </li>
-          <li class="nav-item">
-            <div class="nav-link">
-              <%= link_to  public_rooms_path do %>
+                <% end %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="nav-link">
+                <%= link_to  public_rooms_path do %>
                     投稿一覧
-                  <% end %>
-                  </div>
-          </li>
-
+                 <% end %>
+               </div>
+            </li>
           <li class="nav-item">
             <% if !current_user.email == "guest@example.com" %>
             <div class="nav-link">
@@ -57,10 +56,6 @@
             <% else %>
             <a class="nav-link disabled">投稿する</a>
             <% end %>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link disabled">無効</a>
           </li>
           <li class="nav-item active">
             <div class="nav-link">

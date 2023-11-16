@@ -13,7 +13,6 @@
 
 
 <div class="col-md-4 d-flex align-items-center">
-  <h3>改善する</h3>
   <table class="table table-bordered bg-white">
       <tr>
         <th class="w-25">タイトル</th>
@@ -48,14 +47,14 @@
 
  <!-- コメントフォームのコード -->
 <div class="guest-form">
-<%= form_with model: [@room, @comment], url: public_room_path(@room), local: true do |f| %>
-  <%= f.text_area :comment, rows:'5', placeholder: "コメントをここに", class: "w-100" %>
+  <%= form_with model: [@room, @comment], url: public_room_path(@room), local: true do |f| %>
+    <%= f.text_area :comment, rows:'5', placeholder: "コメントをここに", class: "w-100" %>
   <%= f.submit "送信" %>
-<% end %>
-<div class="overlay">
+  <% end %>
+  <div class="overlay">
    <div class="message">コメントは会員限定です</div>
- </div>
- </div>
+  </div>
+</div>
 
 <%= link_to "D", public_room_path(@room), method: :delete %>
 </div>
