@@ -1,17 +1,10 @@
-<%= form_with(model: [:public, comment]) do |form| %>
-  <% if comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
-      <ul>
-        <% comment.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+<!-- コメントフォームのコード -->
+<div class="guest-form">
+  <%= form_with model: [room, comment], url: public_room_path(room), local: true do |f| %>
+    <%= f.text_area :comment, rows:'5', placeholder: "コメントをここに", class: "w-100" %>
+  <%= f.submit "送信" %>
   <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="overlay">
+   <div class="message">コメントは会員限定です</div>
   </div>
-<% end %>
+</div>

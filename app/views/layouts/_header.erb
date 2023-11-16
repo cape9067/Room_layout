@@ -1,44 +1,48 @@
 <header class="shadow">
-
-    <div class="container-fluid">
-
-
-
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      
       <div class="navbar-brand">
         <%= link_to  root_path do %>
-                    へやもよう
-                  <% end %>
-                  </div>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="ナビゲーションの切替">
+          へやもよう
+        <% end %>
+      </div>
+                  
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar" aria-controls="Navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
         <span class="navbar-toggler-icon"></span>
       </button>
+      
       <div class="collapse navbar-collapse" id="navbar-header">
         <ul class="navbar-nav mr-auto">
           <% if admin_signed_in? %>
                 <%= render 'layouts/admin_header' %>
           <% elsif user_signed_in? %>
+          
             <li class="nav-item dropdown">
               <div class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <a href="#">マイページ</a>
-                  </div>
+                <a href="#">マイページ</a>
+              </div>
+                  
               <div class="dropdown-menu">
                 <div class="dropdown-item">
                   <%= link_to public_user_path(current_user) do %>
                     マイページ
                   <% end %>
-                  </div>
-                  <% if !current_user.email == "guest@example.com" %>
-              <div class="dropdown-item">
-                <%= link_to  public_user_bookmarks_path(current_user) do %>
+                </div>
+                <% if current_user.email == "guest@example.com" %>
+                  <a class="dropdown-item disabled">
                     マイリスト
-                  <% end %>
+                  </a>
+                <% else %>
+                  <div class="dropdown-item">
+                    <%= link_to  public_user_bookmarks_path(current_user) do %>
+                      マイリスト
+                    <% end %>
                   </div>
-                  <% else %>
-                  <a class="dropdown-item disabled">マイリスト</a>
                 <% end %>
               </div>
             </li>
+            
             <li class="nav-item">
               <div class="nav-link">
                 <%= link_to  public_rooms_path do %>
@@ -46,45 +50,56 @@
                  <% end %>
                </div>
             </li>
-          <li class="nav-item">
-            <% if !current_user.email == "guest@example.com" %>
-            <div class="nav-link">
-              <%= link_to  new_public_room_path do %>
-                投稿する
+            
+            <li class="nav-item">
+              <% if current_user.email == "guest@example.com" %>
+                <a class="nav-link disabled">
+                  投稿する
+                </a>
+              <% else %>
+                <div class="nav-link">
+                  <%= link_to  new_public_room_path do %>
+                    投稿する
+                  <% end %> 
+                </div>
               <% end %>
-            </div>
-            <% else %>
-            <a class="nav-link disabled">投稿する</a>
-            <% end %>
-          </li>
-          <li class="nav-item active">
-            <div class="nav-link">
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                    ログアウト
-                  <% end %>
-                  </div>
-          </li>
+            </li>
+            
+            <li class="nav-item active">
+              <div class="nav-link">
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  ログアウト
+                <% end %>
+              </div>
+            </li>
+            
           <% else %>
-          <li class="nav-item">
-            <div class="nav-link">
-              <%= link_to new_user_registration_path do %>
-                    新規登録
-                  <% end %>
-                  </div>
-          </li>
-          <li class="nav-item">
-            <div class="nav-link">
-              <%= link_to new_user_session_path do %>
-                    ログイン
-                  <% end %>
-                  </div>
-          </li>
+          
+            <li class="nav-item">
+              <div class="nav-link">
+                <%= link_to new_user_registration_path do %>
+                  新規登録
+                <% end %>
+              </div>
+            </li>
+            
+            <li class="nav-item">
+              <div class="nav-link">
+                <%= link_to new_user_session_path do %>
+                  ログイン
+                <% end %>
+              </div>
+            </li>
+            
           <% end %>
+          
         </ul>
+        
         <form class="form-inline my-2 my-md-0">
           <input class="form-control mr-sm-2" type="search" placeholder="検索..." aria-label="検索...">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
         </form>
+        
       </div>
     </nav>
   </div>
