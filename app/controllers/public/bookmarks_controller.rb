@@ -3,17 +3,17 @@ class Public::BookmarksController < ApplicationController
   before_action :ensure_guest_user, only: [:create]
   
   def create
+  @room = Room.find(params[:room_id])
   @bookmark = Bookmark.new(user_id: current_user.id, room_id: params[:room_id])
   @bookmark.save
-  redirect_to request.referer
   end
 
  def destroy
+  @room = Room.find(params[:room_id])
   @bookmark = Bookmark.find_by(user_id: current_user.id, room_id: params[:room_id])
   if @bookmark.present?
   @bookmark.destroy
   end
-  redirect_to request.referer
  end
  
  def index

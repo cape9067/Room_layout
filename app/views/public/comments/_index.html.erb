@@ -1,0 +1,34 @@
+<p class="my-5">コメント一覧(<%= room.comments.count %>件)</p>
+<hr>
+<% room.comments.first(3).each do |comment| %>
+<p>
+   <div class="container">
+ <div class="row d-flex align-items-center pb-3">
+   <div class="col pl-1">
+     <%= comment.user.name %>さん
+   </div>
+   <div class="col d-flex justify-content-end">
+     <%= comment.created_at.strftime('%Y/%m/%d') %>
+   </div>
+ </div>
+ <div class="card-body border rounded mb-3 bg-white">
+   <%= comment.comment %>
+ </div>
+ <hr class="d-none">
+ <% if comment.user == current_user %>
+   <%= link_to public_room_comment_path(room, comment), method: :delete, remote: true do %>
+     <div class="text-right">
+       <button class="btn btn-outline-secondary">削除する</button>
+   <% end %>
+   </div>
+ <% end %>
+ <hr>
+</div>
+ </p>
+ <% end %>
+ <div class="text-right">
+<% if room.comments.count > 4 %>
+ <%= link_to 'すべてのコメントを見る', public_comments_path(room_id: room.id) %>
+ <hr>
+<% end %>
+</div>

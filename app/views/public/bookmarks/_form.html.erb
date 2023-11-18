@@ -1,9 +1,9 @@
 <% if current_user.bookmarks.exists?(room_id: room.id) %>
-  <%= link_to public_user_bookmark_path(id: current_user.bookmarks.find_by(room_id: room.id).id, user_id: current_user.id, room_id: room.id), method: :delete do %>
-    <i class="fa-regular fa-folder"></i><%= room.bookmarks.count %>
+  <%= link_to public_user_bookmark_path(id: current_user.bookmarks.find_by(room_id: room.id).id, user_id: current_user.id, room_id: room.id), method: :delete, remote: true do %>
+    <i class="fa-solid fa-folder" aria-hidden="true"></i> <%= room.bookmarks.count %>
   <% end %>
 <% else %>
-  <%= link_to public_user_bookmarks_path(user_id: current_user.id, room_id: room.id), method: :post do %>
-    <i class="fa-regular fa-folder"></i><%= room.bookmarks.count %>
+  <%= link_to public_user_bookmarks_path(user_id: current_user.id, room_id: room.id), method: :post, remote: true do %>
+    <i class="fa-regular fa-folder"></i> <%= room.bookmarks.count %>
   <% end %>
 <% end %>

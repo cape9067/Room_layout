@@ -26,11 +26,11 @@ devise_scope :user do
 
   namespace :public do
     resources :rooms do
-     resources :comments, only: [:create, :destroy]
+     resources :comments, only: [:create, :destroy, :index]
      resource :likes, only: [:create, :destroy]
-     
+
     end
-    
+
     resources :users, only: [:show, :edit, :update] do
      resources :bookmarks, only: [:create, :destroy, :index]
     end
@@ -38,11 +38,11 @@ devise_scope :user do
 
   namespace :admin do
     resources :categories, only: [:index, :edit, :create, :destory, :update]
-    
+
     resources :rooms, only: [:index, :show, :destroy] do
      resources :comments, only: [:create, :destroy]
     end
-    
+
     resources :users, only: [:index, :show, :edit, :update]
 
   end

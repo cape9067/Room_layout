@@ -30,25 +30,36 @@
         <td><%= @room.created_at.strftime("%Y年%m月%d日") %></td>
       </tr>
   </table>
-</div>
 
 </div>
 
 
-<p>コメント</p>
-<% @comments.each do |comment| %>
- <p>
-   <strong><%= comment.user.name %>:</strong>
-   <%= comment.comment %>
- </p>
-<% end %>
 
 
+<div class="container">
+  <div class="row">
+<div class="col-10">
+
+ <div id="comments_index_<%= @room.id %>">
+ <%= render 'public/comments/index', room: @room, comment: @comment %>
+ </div>
+
+
+<div id="comments_form_<%= @room.id %>">
 <%= render 'public/comments/form', room: @room, comment: @comment %>
+</div>
 
+</div>
+</div>
+</div>
+
+
+<div class="col-xl-2">
+<%= render 'right', categories: @categories, rooms: @rooms %>
+</div>
+</div>
+</div>
 <%= link_to "D", public_room_path(@room), method: :delete %>
-</div>
-</div>
 
 
 <script>

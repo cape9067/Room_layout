@@ -6,16 +6,26 @@
     <div class="card-body">
       <div class="">
         <p class="card-title h5 font-weight-bold"><%= room.title %></p>
-        <p class="btn btn-secondary btn-sm text-white"><i class="fa-solid fa-tag"></i>️ <%= room.category.name %></p>
+        <p class="btn btn-secondary btn-sm text-white"><i class="fa-solid fa-tag"></i><%= room.category.name %></p>
         <p><small class="text-muted">投稿日：<%= room.created_at.strftime("%Y-%m-%d") %><br>posted by <%= room.user.name %></small></p>
       </div>
     </div>
     <div class="card-footer">
-      <% if current_user %>
-        <%= render 'public/bookmarks/form', room: room %>
+      <div class="row d-flex justify-content-center">
 
+      <div class="mx-3" id="likes_form_<%= room.id %>">
         <%= render 'public/likes/form', room: room %>
-      <% end %>
+      </div>
+
+     <div class="mx-3" id="bookmarks_form_<%= room.id %>">
+        <%= render 'public/bookmarks/form', room: room %>
+      </div>
+
+      <div class="mx-3 text-primary">
+        <i class="fa-regular fa-message" style="color:#bea98e;"></i> <%= room.comments.count %>
+      </div>
+
+      </div>
     </div>
   </div>
 <% end %>

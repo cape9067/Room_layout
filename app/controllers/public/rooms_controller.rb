@@ -11,8 +11,11 @@ class Public::RoomsController < ApplicationController
   # GET /rooms/1 or /rooms/1.json
   def show
     @room = Room.find(params[:id])
-    @comments = @room.comments
+    @comments = Comment.where(room_id: params[:room_id]).order(id: :asc).limit(3)
+    @all_comments_count = @comments.count
     @comment = Comment.new
+    @categories = Category.all
+    @rooms = Room.all
   end
 
   # GET /rooms/new

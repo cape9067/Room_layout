@@ -1,9 +1,9 @@
 <% if Like.exists?(ip: request.remote_ip, room_id: room.id) %>
-  <%= link_to public_room_likes_path(room, Like.find_by(ip: request.remote_ip, room_id: room.id)), method: :delete do %>
-    <i class="fa fa-heart unlike-btn"></i> <%= room.likes.count %>
+  <%= link_to public_room_likes_path(room, Like.find_by(ip: request.remote_ip, room_id: room.id)), method: :delete, remote: true do %>
+    <i class="fa fa-heart like-btn" aria-hidden="true" style="color: red;"></i> <%= room.likes.count %>
   <% end %>
 <% else %>
-  <%= link_to public_room_likes_path(room), method: :post do %>
-    <i class="fa fa-heart like-btn"></i> <%= room.likes.count %>
+  <%= link_to public_room_likes_path(room), method: :post, remote: true do %>
+    <i class="fa-regular fa-heart like-btn"></i> <%= room.likes.count %>
   <% end %>
 <% end %>
