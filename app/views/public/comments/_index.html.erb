@@ -26,9 +26,3 @@
 </div>
  </p>
  <% end %>
- <div class="text-right">
-<% if room.comments.count > 4 %>
- <%= link_to 'すべてのコメントを見る', public_comments_path(room_id: room.id) %>
- <hr>
-<% end %>
-</div>

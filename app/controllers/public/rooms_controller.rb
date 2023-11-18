@@ -12,7 +12,6 @@ class Public::RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @comments = Comment.where(room_id: params[:room_id]).order(id: :asc).limit(3)
-    @all_comments_count = @comments.count
     @comment = Comment.new
     @categories = Category.all
     @rooms = Room.all

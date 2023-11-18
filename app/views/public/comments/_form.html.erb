@@ -1,12 +1,13 @@
 <!-- コメントフォームのコード -->
 <div class="guest-form">
-  <%= form_with model: [room, comment], url: public_room_comments_path(room), remote: true do |f| %>
+  <%= form_with model: [room, comment], url: public_room_comments_path(room), local: false do |f| %>
     <%= f.label "コメントを投稿する" %>
     <%= f.text_area :comment, rows:'5', placeholder: "コメントをここに", class: "form-control my-3" %>
     <div class="text-right">
   <%= f.submit "コメントする", class: 'btn btn-primary text-white' %>
     </div>
   <% end %>
+  <!--ゲストユーザーの場合オーバーレイを表示-->
   <div class="overlay">
    <div class="message">コメントは会員限定です</div>
   </div>

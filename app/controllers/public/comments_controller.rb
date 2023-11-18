@@ -15,10 +15,21 @@ class Public::CommentsController < ApplicationController
  def destroy
   @room = Room.find(params[:room_id])
   @comment = @room.comments.find(params[:id])
+  respond_to do |format|
   @comment.destroy
+  format.html { redirect_to request.referer }
+  format.js 
+ end
+ end
+
+ def index
+  @room = Room.find(params[:room_id])
+  @comments = @room.comments.all
+  @comment = Comment.new
  end
 
  private
+
 
  def comment_params
   params.require(:comment).permit(:comment)

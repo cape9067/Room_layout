@@ -1,1 +1,1 @@
-$("#comments_index_<%= @room.id %>").html("<%= j(render 'public/comments/index', room: @room) %>");
+$("#comments_area").html("<%= j( render "index", comments: @comments, room: @room) %>")
