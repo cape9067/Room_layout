@@ -1,5 +1,6 @@
 class Public::CommentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_guest_user, only: [:index]
 
   def create
   @room = Room.find(params[:room_id])
@@ -18,7 +19,7 @@ class Public::CommentsController < ApplicationController
   respond_to do |format|
   @comment.destroy
   format.html { redirect_to request.referer }
-  format.js 
+  format.js
  end
  end
 
@@ -33,6 +34,13 @@ class Public::CommentsController < ApplicationController
 
  def comment_params
   params.require(:comment).permit(:comment)
+ end
+
+ def ensure_guest_user
+ @user = current_user
+ if @user.guest_user?
+  @isGuest = true
+ end
  end
 
 end

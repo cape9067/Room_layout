@@ -28,6 +28,7 @@
 </div>
  </p>
  <% end %>
+ 
  <div class="guest-form">
   <%= form_with model: [@room, @comment], url: public_room_comments_path(@room), local: false do |f| %>
     <%= f.label "コメントを投稿する" %>
@@ -42,3 +43,10 @@
   </div>
 </div>
 </div>
+
+<script>
+ var isGuest = <%= @isGuest %>;
+ if (isGuest) {
+   document.querySelector('.guest-form .overlay').style.display = 'block';
+ }
+</script>
