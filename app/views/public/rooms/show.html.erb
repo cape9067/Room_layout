@@ -3,13 +3,37 @@
 
 <div class="col-xl-6 d-flex justify-content-center">
   <div class="ml-5">
+    <div class="show_image">
+    <div id="carouselExampleIndicators" class="carousel slide" data-touch="false">
+      <ol class="carousel-indicators">
+        <% @room.images.each_with_index do |image, index| %>
+          <li data-target="#carouselExampleIndicators" data-slide-to="<%= index %>" class="<%= 'active' if index == 0 %>"></li>
+        <% end %>
+      </ol>
 
-      <%= image_tag @room.image, size: "600x400", class: "bg-white border shadow p-1 m-4" %>
+      <div class="carousel-inner">
+        <% @room.images.each_with_index do |image, index| %>
+          <div class="carousel-item <%= 'active' if index == 0 %>">
+             <%= image_tag image, size: "600x400", class: "bg-white border shadow p-1 m-4" %>
+          </div>
+        <% end %>
+      </div>
+
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">前へ</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">次へ</span>
+      </a>
+
 
 
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="col-xl-4 d-flex align-items-center">
   <table class="table table-bordered bg-white">

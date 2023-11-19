@@ -34,6 +34,10 @@
   }
 }
 
+.user-show .card {
+  width: 290px;
+}
+
 .user-show .partial-image {
   width: 280px;  /* 画像の幅を280pxに設定 */
   height: 180px; /* 画像の高さを180pxに設定 */
@@ -60,4 +64,16 @@
  left: 50%;
  transform: translate(-50%, -50%);
  color: white; /* メッセージの色を白に設定 */
+}
+
+.card {
+ width: 380px;
+}
+
+.show_image {
+ width: 630px;
+}
+
+.show_image .carousel-indicators {
+ bottom: 30px;
 }
