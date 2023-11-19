@@ -34,11 +34,20 @@
   }
 }
 
-.user-show .card {
+.user-show-post .card {
   width: 290px;
 }
 
-.user-show .partial-image {
+.user-show-post .partial-image {
+  width: 280px;  /* 画像の幅を280pxに設定 */
+  height: 180px; /* 画像の高さを180pxに設定 */
+}
+
+.user-show-bookmark .card {
+  width: 290px;
+}
+
+.user-show-bookmark .partial-image {
   width: 280px;  /* 画像の幅を280pxに設定 */
   height: 180px; /* 画像の高さを180pxに設定 */
 }
@@ -76,4 +85,8 @@
 
 .show_image .carousel-indicators {
  bottom: 30px;
+}
+
+.room-list {
+ display: flex;
 }

@@ -4,9 +4,18 @@ class Public::RoomsController < ApplicationController
 
   # GET /rooms or /rooms.json
   def index
-    @rooms = Room.all
     @categories = Category.all
+    @latest_rooms = Room.order(created_at: :desc).limit(4)
+    case params[:sort]
+    when 'likes'
+    @rooms = Room.left_joins(:likes).group('rooms.id').order('COUNT(likes.id) DESC')
+    when 'bookmarks'
+    @rooms = Room.left_joins(:bookmarks).group('rooms.id').order('COUNT(bookmarks.id) DESC')
+    else
+    @rooms = Room.order(created_at: :desc)
+    end
   end
+
 
   # GET /rooms/1 or /rooms/1.json
   def show
@@ -59,7 +68,7 @@ class Public::RoomsController < ApplicationController
 
   private
     def room_params
-      params.require(:room).permit(:title, :body, :category_id, images: []).merge(user_id: current_user.id)
+      params.require(:room).permit(:title, :body, :category_id, :sort, images: []).merge(user_id: current_user.id)
     end
 
     def ensure_guest_user

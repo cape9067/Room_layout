@@ -3,11 +3,14 @@
 
 
 <div class="col-9 mt-4">
-
+	
+	<div class="mb-3 ml-5 pl-5">
+	<%= render 'sort' %>
+	</div>
 	<div class="row ml-5 pl-5">
 
-<%= render 'index', rooms: @rooms %>
 
+      <%= render 'index', rooms: @rooms %>
 <br>
 
 <%= link_to 'New Room', new_public_room_path %>
@@ -16,8 +19,8 @@
 </div>
 
 
-<div class="col-md-3 bg-primary d-flex flex-column p-4">
-	<%= render 'right', categories: @categories, rooms: @rooms %>
+<div class="col-md-3 bg-primary p-4">
+	<%= render 'side', categories: @categories, rooms: @latest_rooms %>
 </div>
 </div>
 </div>

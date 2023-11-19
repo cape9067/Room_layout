@@ -12,6 +12,7 @@ class Room < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many_attached :images
+  
 
   def guest_user?
     email == GUEST_USER_EMAIL
@@ -26,5 +27,6 @@ class Room < ApplicationRecord
      errors.add(:images, "can't be more than three.")
    end
   end
+
 
 end
