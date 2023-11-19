@@ -1,14 +1,14 @@
 <%= form_with model: room, url: public_rooms_path, local:true do |f| %>
 
-  <%= f.label :部屋画像, class: "mr-4" %>
-  <%= f.file_field :image, class: "form-control-file image", accept: 'image/*' %>
-  
+  <%= f.label :部屋画像（３枚まで）, class: "mr-4" %>
+  <%= f.file_field :images, class: "form-control-file image", accept: 'image/*', multiple: true %>
+
   <%= f.label :投稿タイトル, class: "mr-4" %>
   <%= f.text_field :title, placeholder: "タイトルを入力", class: "form-control name" %>
-  
+
   <%= f.label :内容, class: "mr-4" %>
-  <%= f.text_field :body, placeholder: "内容を入力", class: "form-control name" %>
-  
+  <%= f.text_area :body, placeholder: "内容を入力", class: "form-control name" %>
+
   <%= f.label :カテゴリー, class: "mr-4" %>
   <%= f.select :category_id, options_for_select(@categories.map { |c| [c.name, c.id] }), {include_blank: '--選択してください--'}, {class: "form-control"} %>
 

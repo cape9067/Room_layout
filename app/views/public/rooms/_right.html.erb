@@ -20,7 +20,7 @@
 
     <div class="col-md-5">
     	<%= link_to public_room_path(room) do %>
-      <%= image_tag room.image, size: "140x110", class:"card-img" %>
+      <%= image_tag room.images.first, size: "140x110", class:"card-img" %>
       <% end %>
     </div>
     <div class="col-md-7">

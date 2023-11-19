@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2023_11_07_015031) do
 
   create_table "likes", force: :cascade do |t|
     t.integer "room_id"
-    t.integer "user_id"
+    t.string "ip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
