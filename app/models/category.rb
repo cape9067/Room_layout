@@ -3,5 +3,6 @@ class Category < ApplicationRecord
   validates :name, presence: true
   
   # アソシエーション
-  has_many :rooms, dependent: :destroy
+  has_many :rooms, through: :room_categories
+  has_many :room_categories, dependent: :destroy
 end

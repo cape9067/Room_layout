@@ -68,7 +68,7 @@ class Public::RoomsController < ApplicationController
 
   private
     def room_params
-      params.require(:room).permit(:title, :body, :category_id, :sort, images: []).merge(user_id: current_user.id)
+      params.require(:room).permit(:title, :body, :sort, category_ids: [], images: []).merge(user_id: current_user.id)
     end
 
     def ensure_guest_user

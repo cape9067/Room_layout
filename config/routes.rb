@@ -9,12 +9,12 @@ Rails.application.routes.draw do
    get '/users/sign_out' => 'public/sessions#destroy'
  end
 
-  devise_for :admins, skip: [:registrations, :passwords], controllers: {
-   sessions: 'admins/sessions'
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
+   sessions: 'admin/sessions'
  }
 
  devise_scope :admin do
-  get '/admins/sign_out', to: 'admin/sessions#destroy', as: 'admin_log_out'
+  get '/admin/sign_out', to: 'admin/sessions#destroy', as: 'admin_log_out'
 end
 
 devise_scope :user do
@@ -37,12 +37,9 @@ devise_scope :user do
   end
 
   namespace :admin do
-    resources :categories, only: [:index, :edit, :create, :destory, :update]
-
-    resources :rooms, only: [:index, :show, :destroy] do
-     resources :comments, only: [:create, :destroy]
-    end
-
+    resources :categories, only: [:index, :edit, :create, :update]
+    resources :rooms, only: [:index, :destroy]
+    resources :comments, only: [:destroy, :index]
     resources :users, only: [:index, :show, :edit, :update]
 
   end

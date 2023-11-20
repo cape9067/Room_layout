@@ -1,51 +1,33 @@
 <div class="container">
   <div class="row">
-    
-    <p class="col-3 font-weight-bold bg-secondary text-light text-center m-5 h4">
-      ジャンル一覧・追加
-    </p>
-    
-  </div>
-
-
-
-  <div class="col-7">
-    
-    <%= form_with model: @category, url: admin_categories_path, local:true do |f| %>
-      <div class="form-group d-flex justify-content-between text-nowrap mt-3 mb-3">
-        <%= f.label :カテゴリー名, class: "font-weight-bold mr-5" %>
-        <%= f.text_field :name, placeholder: "ジャンル名を入力", class: "form-control name mr-5 ml-5" %>
-        <%= f.submit :新規登録, class: 'btn btn-success ml-5' %>
+    <div class="col-9 mx-auto">
+      <div class="my-5">
+        <%= render 'form', categories: @categories %>
       </div>
-    <% end %>
-    
-  </div>
+        
+      <table class='table table-hover table-inverse table-light'>
+        <thead class="table-dark">
+          <tr>
+            <th>カテゴリー名</th>
+            <th>紐づけられた投稿数</th>
+            <th></th>
+          </tr>
+        </thead>
 
-
-  <div class="col-4">
-    <table class="table">
-      
-      <thead class="bg-light">
-        <tr>
-          <th>ジャンル</th>
-          <th></th>
-        </tr>
-      </thead>
-      
-      <tbody>
-        <% @categories.each do |category| %>
-        <tr>
-          <td><%= category.name %></td>
-          <td>
-            <%= link_to edit_admin_category_path(category), class: "btn btn-success" do%>
-              編集する
-            <% end %>
-          </td>
+        <tbody>
+         <% @categories.each do |category| %>
+          <tr>
+            <td><%= category.name %></td>
+            <td><%= category.room_categories.count %></td>
+            <td>
+              <%= link_to edit_admin_category_path(category), class: "btn btn-success" do%>
+                編集する
+              <% end %>
+            </td>
           <% end %>
-        </tr>
-      </tbody>
-      
-    </table>
-    
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

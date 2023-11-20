@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :trackable
          
   validates :name, presence: true
   validates :email, presence: true, format: { with: /\A[a-zA-Z0-9]{1,}[@][a-zA-Z0-9]{1,}[.][a-zA-Z0-9]{1,}\z/ }, uniqueness: true
@@ -24,4 +24,22 @@ class User < ApplicationRecord
   def guest_user?
     email == GUEST_USER_EMAIL
   end
+  
+  def log_in(user)
+    session[:user_id] = user.id
+   self.last_login_at = Time.current
+   save
+  end
+  
+  def last_login_time
+    if last_login_at
+    last_login_at.strftime('%Y-%m-%d %H:%M:%S')
+  else
+    '未ログイン'
+  end
+  end 
+  
+  def after_database_authentication
+ self.update_column(:last_login_at, Time.current)
+ end
 end

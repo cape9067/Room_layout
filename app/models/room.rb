@@ -7,7 +7,8 @@ class Room < ApplicationRecord
 
   # アソシエーション
   belongs_to :user
-  belongs_to :category
+  has_many :room_categories, dependent: :destroy
+  has_many :categories, through: :room_categories
   has_many :comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :likes, dependent: :destroy

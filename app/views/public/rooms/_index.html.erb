@@ -44,7 +44,9 @@
             <%= room.title %>
           <% end %>
         </p>
-        <p class="btn btn-secondary btn-sm text-white"><i class="fa-solid fa-tag"></i><%= room.category.name %></p>
+        <% room.categories.each do |category| %>
+        <p class="btn btn-secondary btn-sm text-white"><i class="fa-solid fa-tag"></i><%= category.name %></p>
+        <% end %>
         <p><small class="text-muted">投稿日：<%= room.created_at.strftime("%Y-%m-%d") %><br>posted by <%= room.user.name %></small></p>
     </div>
 

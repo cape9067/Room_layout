@@ -90,3 +90,7 @@
 .room-list {
  display: flex;
 }
+
+.table-fixed {
+ table-layout: fixed;
+}

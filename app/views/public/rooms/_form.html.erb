@@ -10,7 +10,10 @@
   <%= f.text_area :body, placeholder: "内容を入力", class: "form-control name" %>
 
   <%= f.label :カテゴリー, class: "mr-4" %>
-  <%= f.select :category_id, options_for_select(@categories.map { |c| [c.name, c.id] }), {include_blank: '--選択してください--'}, {class: "form-control"} %>
+  <% Category.all.each do |category| %>
+   <%= check_box_tag 'room[category_ids][]', category.id, room.categories.include?(category) %>
+   <%= category.name %>
+ <% end %>
 
     <%= f.submit :投稿, class: 'btn btn-success btn-lg' %>
 <% end %>
