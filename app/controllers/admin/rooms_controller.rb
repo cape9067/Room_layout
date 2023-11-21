@@ -5,6 +5,10 @@ class Admin::RoomsController < ApplicationController
     @rooms = Room.all
   end
   
+  def show
+    @room = Room.find[:params]
+  end
+  
   def destroy
     flash[:success] = "投稿を削除しました。"
     @room = Room.find(params[:id])

@@ -73,27 +73,3 @@
 <div id="comments_area">
     <%= render "public/comments/index", comments: @comments, room: @room %>
 </div>
-
-<div>
-    <%= render "public/comments/form", room: @room, comment: @comment %>
-</div>
-
-</div>
-</div>
-</div>
-
-
-<div class="col-xl-2">
-<%= render 'side', categories: @categories, rooms: @rooms %>
-</div>
-</div>
-</div>
-<%= link_to "D", public_room_path(@room), method: :delete %>
-
-
-<script>
- var isGuest = <%= @isGuest %>;
- if (isGuest) {
-   document.querySelector('.guest-form .overlay').style.display = 'block';
- }
-</script>
