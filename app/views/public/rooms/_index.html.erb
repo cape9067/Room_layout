@@ -1,7 +1,7 @@
 <!--同じ投稿が2つ表示されている時（public/users/show等）に、同じIDを持ってしまいカルーセルが不具合を起こしていたため、一意のIDを付けるようにした。-->
 <% rooms.each_with_index do |room, i| %>
 
-  <div class="card mb-3 shadow mr-3 img-thumbnail">
+  <div class="card-index mb-3 shadow mr-2 img-thumbnail">
     <% if room.images.count > 1 %>
     <!--画像が２枚以上ある場合、カルーセルをつける-->
     <div id="carouselExampleIndicators<%= i %>" class="carousel slide" data-touch="false">

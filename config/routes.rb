@@ -25,6 +25,9 @@ devise_scope :user do
  get '/admin' => 'admin/homes#top'
 
   namespace :public do
+   
+   get 'search', to: 'searches#search'
+   
     resources :rooms do
      resources :comments, only: [:create, :destroy, :index]
      resource :likes, only: [:create, :destroy]
@@ -38,9 +41,9 @@ devise_scope :user do
 
   namespace :admin do
     resources :categories, only: [:index, :edit, :create, :update]
-    resources :rooms, only: [:index, :destroy]
+    resources :rooms, only: [:index, :destroy, :show]
     resources :comments, only: [:destroy, :index]
-    resources :users, only: [:index, :show, :edit, :update]
+    resources :users, only: [:index, :edit, :update]
 
   end
 

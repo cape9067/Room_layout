@@ -8,11 +8,11 @@ class Public::RoomsController < ApplicationController
     @latest_rooms = Room.order(created_at: :desc).limit(4)
     case params[:sort]
     when 'likes'
-    @rooms = Room.left_joins(:likes).group('rooms.id').order('COUNT(likes.id) DESC')
+    @rooms = Room.left_joins(:likes).group('rooms.id').order('COUNT(likes.id) DESC').page(params[:page]).per(6)
     when 'bookmarks'
-    @rooms = Room.left_joins(:bookmarks).group('rooms.id').order('COUNT(bookmarks.id) DESC')
+    @rooms = Room.left_joins(:bookmarks).group('rooms.id').order('COUNT(bookmarks.id) DESC').page(params[:page]).per(6)
     else
-    @rooms = Room.order(created_at: :desc)
+    @rooms = Room.order(created_at: :desc).page(params[:page]).per(6)
     end
   end
 

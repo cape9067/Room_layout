@@ -13,10 +13,8 @@
  *= require_tree .
  *= require_self
  */
- .card-img{
-    max-width: 100%;
-    object-fit: cover;
-}
+
+
 
 /* タブレット縦置きサイズ（768px）以下 */
 @media screen and (max-width:768px) {
@@ -34,7 +32,7 @@
   }
 }
 
-.user-show-post .card {
+.user-show-post .card-index {
   width: 290px;
 }
 
@@ -43,7 +41,7 @@
   height: 180px; /* 画像の高さを180pxに設定 */
 }
 
-.user-show-bookmark .card {
+.user-show-bookmark .card-index {
   width: 290px;
 }
 
@@ -75,7 +73,7 @@
  color: white; /* メッセージの色を白に設定 */
 }
 
-.card {
+.card-index {
  width: 380px;
 }
 
@@ -93,4 +91,12 @@
 
 .table-fixed {
  table-layout: fixed;
+}
+
+#room-index {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 380px);
+  grid-column-gap: 10px;
+  justify-content: center;
+  list-style: none;
 }
