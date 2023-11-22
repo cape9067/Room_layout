@@ -21,6 +21,10 @@ class Public::UsersController < ApplicationController
       render :edit
     end
   end
+  
+  def post
+    @user = User.find(params[:id])
+  end
 
 
   private

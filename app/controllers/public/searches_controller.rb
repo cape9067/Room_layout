@@ -4,13 +4,29 @@ class Public::SearchesController < ApplicationController
   def search
     @categories = Category.all
     @latest_rooms = Room.order(created_at: :desc).limit(4)
+    rooms = Room.where('rooms.title LIKE ?', "%#{params[:query]}%").page(params[:page]).per(6)
     case params[:sort]
     when 'likes'
-    @results = Room.left_joins(:likes).group('rooms.id').order('COUNT(likes.id) DESC').where('rooms.title LIKE ?', "%#{params[:query]}%").page(params[:page]).per(6)
+    @results = rooms.left_joins(:likes).group('rooms.id').order('COUNT(likes.id) DESC')
     when 'bookmarks'
-    @results = Room.left_joins(:bookmarks).group('rooms.id').order('COUNT(bookmarks.id) DESC').where('rooms.title LIKE ?', "%#{params[:query]}%").page(params[:page]).per(6)
+    @results = rooms.left_joins(:bookmarks).group('rooms.id').order('COUNT(bookmarks.id) DESC')
     else
-    @results = Room.where('rooms.title LIKE ?', "%#{params[:query]}%").order(created_at: :desc).page(params[:page]).per(6)
+    @results = rooms.order(created_at: :desc)
+    end
+  end
+  
+  def category_search
+    @categories = Category.all
+    @latest_rooms = Room.order(created_at: :desc).limit(4)
+    category_id = params[:category_id]
+		rooms = Room.joins(room_categories: :category).where(categories: { id: category_id }).page(params[:page]).per(6)
+    case params[:sort]
+    when 'likes'
+    @rooms = rooms.left_joins(:likes).group('rooms.id').order('COUNT(likes.id) DESC')
+    when 'bookmarks'
+    @rooms = rooms.left_joins(:bookmarks).group('rooms.id').order('COUNT(bookmarks.id) DESC')
+    else
+    @rooms = rooms.order(created_at: :desc)
     end
   end
 end

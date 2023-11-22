@@ -1,76 +1,75 @@
 <div class="container-fluid">
   <div class="row">
-
-<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-          <div class="sidebar-sticky pt-3">
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <p class="nav-link active">
-                  ニックネーム<br>
-                  <%= @user.name %>
-                </p>
-              </li>
-              <li class="nav-item">
-                <p class="nav-link">
-                  メールアドレス<br>
-      <%= @user.email %>
-                </p>
-              </li>
-            </ul>
-            <hr>
-            <h5 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>コンテンツ</span>
-            </h5>
-            <ul class="nav flex-column mb-2">
-              <li class="nav-item">
-                <div class="nav-link">
-                  <i class="fa-solid fa-newspaper mr-3"></i>投稿記事
-                </div>
-              </li>
-              <li class="nav-item">
-                <div class="nav-link">
-                  <%= link_to  public_user_bookmarks_path(current_user) do %>
-                    <i class="fa-solid fa-folder mr-3"></i>マイリスト
-                  <% end %>
-                </div>
-              </li>
-              <li class="nav-item">
-                <div class="nav-link">
-                  <%= link_to edit_public_user_path(@user) do %>
-                    <i class="fa-solid fa-gear mr-3"></i>プロフィール編集
-                  <% end %>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  年末販売
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-
-  <div class="col-md-10">
-
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="sidebar-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <p class="nav-link active">
+              ニックネーム<br>
+              <%= @user.name %>
+            </p>
+          </li>
+          <li class="nav-item">
+            <p class="nav-link">
+              メールアドレス<br>
+              <%= @user.email %>
+            </p>
+          </li>
+        </ul>
+        <hr>
+        <h5 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>コンテンツ</span>
+        </h5>
+        <ul class="nav flex-column mb-2">
+          <li class="nav-item">
+            <div class="nav-link">
+              <%= link_to  post_public_user_path(current_user) do %>
+                <i class="fa-solid fa-newspaper mr-3"></i>投稿記事
+              <% end %>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-link">
+              <%= link_to  public_user_bookmarks_path(current_user) do %>
+                <i class="fa-solid fa-folder mr-3"></i>マイリスト
+              <% end %>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-link">
+              <%= link_to edit_public_user_path(@user) do %>
+                <i class="fa-solid fa-gear mr-3"></i>プロフィール編集
+              <% end %>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              年末販売
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
+    <div class="col-md-10">
       <div>
-      <%= @user.name %>さんのマイページ
-    </div>
-    <h3>投稿した部屋</h3>
-
+        <%= @user.name %>さんのマイページ
+      </div>
+      <h3>投稿した部屋</h3>
       <div class="user-show-post">
         <div class="row ml-1">
           <%= render 'public/rooms/index', rooms: @latest_rooms %>
         </div>
       </div>
-
-  <div>
-    マイリスト
+      <div>
+        マイリスト
+      </div>
+      <div class="user-show-bookmark">
+        <div class="row ml-1">
+          <%= render 'public/rooms/index', rooms: @user.bookmarked_rooms %>
+        </div>
+      </div>
+    </div>
   </div>
-  
-  <div class="user-show-bookmark">
-    <div class="row ml-1">
-     <%= render 'public/rooms/index', rooms: @user.bookmarked_rooms %>
-  </div>
-</div>
 </div>

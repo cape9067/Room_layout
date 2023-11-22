@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-9 mt-4">
+      <div class="mb-3 ml-5 pl-5">
+		    <div>
+	        (全<%= @rooms.total_count %>件)
+          <%= link_to '新着順', public_category_search_path(sort: 'newest', category_id: params[:category_id]), class: "btn btn-secondary rounded-pill mx-2 text-white" %>
+          <%= link_to 'いいね数順', public_category_search_path(sort: 'likes', category_id: params[:category_id]), class: "btn btn-secondary rounded-pill mx-2 text-white" %>
+          <%= link_to 'ブックマーク数順', public_category_search_path(sort: 'bookmarks', category_id: params[:category_id]), class: "btn btn-secondary rounded-pill mx-2 text-white" %>
+        </div>
+	    </div>
+	    
+	    <hr>
+	    
+      <div class="row" id="room-index">
+        <% if @rooms.empty? %>
+  	      <p class="font-weight-bold d-flex justify-content-center">検索した記事は見つかりませんでした。</p>
+		    <% else %>
+          <%= render 'public/rooms/index', rooms: @rooms %>
+        <% end %>
+      </div>
+      
+      <div class="d-flex justify-content-center">
+        <%= paginate @rooms, theme: 'bootstrap-5' %>
+      </div>
+    </div>
+
+    <div class="col-md-3 bg-primary p-4">
+	    <%= render 'public/rooms/side', categories: @categories, rooms: @latest_rooms %>
+    </div>
+  </div>
+</div>

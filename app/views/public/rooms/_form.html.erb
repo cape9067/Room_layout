@@ -13,7 +13,7 @@
   <% Category.all.each do |category| %>
    <%= check_box_tag 'room[category_ids][]', category.id, room.categories.include?(category) %>
    <%= category.name %>
- <% end %>
+  <% end %>
 
-    <%= f.submit :投稿, class: 'btn btn-success btn-lg' %>
+  <%= f.submit :投稿, class: 'btn btn-success btn-lg' %>
 <% end %>

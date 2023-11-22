@@ -3,28 +3,28 @@
     <div class="text-center">
       <div class="m-3 h3 font-weight-bold">ログイン画面</div>
 
-<%= form_with model: @user, url: new_user_session_path do |f| %>
-  <div class="form-row font-weight-bold mb-5 mt-5">
-    <%= f.label :email, "メールアドレス" %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-  </div>
+      <%= form_with model: @user, url: new_user_session_path do |f| %>
+        <div class="form-row font-weight-bold my-5">
+          <%= f.label :email, "メールアドレス" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        </div>
 
-  <div class="form-row mb-4 font-weight-bold mt-5">
-    <%= f.label :password, "パスワード" %>
-    <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
-  </div>
+        <div class="form-row mb-4 font-weight-bold my-5">
+          <%= f.label :password, "パスワード" %>
+          <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+        </div>
 
-  <div class="d-flex justify-content-center">
-    <%= f.submit "ログイン", class: "btn btn-primary text-white" %>
+        <div class="text-center mt-5 mb-4">
+          <%= f.submit "ログイン", class: "btn btn-primary rounded-pill text-white w-100" %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
-</div>
-</div>
 </div>
 
 <p class="col-12 d-flex justify-content-center mt-5">
-      会員登録がお済みでない方は<%= link_to 'こちら', new_user_registration_path, style:"color: #283891;" %></u>
-      </p>
+  アカウント登録がお済みでない方は<%= link_to 'こちら', new_user_registration_path, style:"color: #283891;" %>
+</p>
 
 
 

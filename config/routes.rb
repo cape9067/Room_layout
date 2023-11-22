@@ -27,6 +27,7 @@ devise_scope :user do
   namespace :public do
    
    get 'search', to: 'searches#search'
+   get 'category_search', to: 'searches#category_search'
    
     resources :rooms do
      resources :comments, only: [:create, :destroy, :index]
@@ -35,6 +36,9 @@ devise_scope :user do
     end
 
     resources :users, only: [:show, :edit, :update] do
+     member do
+        get :post
+      end
      resources :bookmarks, only: [:create, :destroy, :index]
     end
   end

@@ -1,39 +1,44 @@
 <div class="h3 mt-4">
 	カテゴリー
 </div>
+
 <hr>
 
 <div class="ml-4 h4">
-	<% categories.each do |category| %>
-	  <%= category.name %>
-	<% end %>
+	<%= form_with url: public_category_search_path, method: :get do |f| %>
+    <% categories.each do |category| %>
+      <tr>
+        <td class="border border-0 align-middle"><%= link_to category.name, public_category_search_path(category_id: category.id), method: :get %></td>
+      </tr>
+    <% end %>
+  <% end %>
 </div>
 
 <div class="h3 mt-4">
 	新着記事
 </div>
+
 <hr>
 
 <% rooms.each do |room| %>
-<div class="card mb-2">
-  <div class="row no-gutters">
-
-    <div class="col-md-5">
-    	<%= link_to public_room_path(room) do %>
-      <%= image_tag room.images.first, size: "140x110", class:"card-img" %>
-      <% end %>
-    </div>
-    <div class="col-md-7">
-      <div class="p-2 mt-2">
-        <h5 class="card-title font-weight-bold">
-        	<%= link_to public_room_path(room) do %>
-        	  <%= room.title %>
-        	<% end %>
+  <div class="card mb-2">
+    <div class="row no-gutters">
+      <div class="col-md-5">
+      	<%= link_to public_room_path(room) do %>
+        <%= image_tag room.images.first, size: "140x110", class:"card-img" %>
+        <% end %>
+      </div>
+      <div class="col-md-7">
+        <div class="p-2 mt-2">
+          <h5 class="card-title font-weight-bold">
+          	<%= link_to public_room_path(room) do %>
+        	    <%= room.title %>
+          	<% end %>
         	</h5>
-        <p class="card-text"><small class="text-muted"><%= room.created_at.strftime("%Y-%m-%d") %><br>posted by <%= room.user.name %></small></p>
+          <p class="card-text"><small class="text-muted"><%= room.created_at.strftime("%Y-%m-%d") %><br>posted by <%= room.user.name %></small></p>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<hr>
+  <hr>
 <% end %>
