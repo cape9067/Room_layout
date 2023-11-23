@@ -41,6 +41,17 @@
   height: 180px; /* 画像の高さを180pxに設定 */
 }
 
+@media screen and (max-width:1440px) {
+  .user-show-post .card-index {
+    width: 230px;
+  }
+
+  .user-show-post .partial-image {
+    width: 210px;  /* 画像の幅を280pxに設定 */
+    height: 140px; /* 画像の高さを180pxに設定 */
+  }
+}
+
 .user-show-bookmark .card-index {
   width: 290px;
 }

@@ -1,7 +1,9 @@
 <div class="mt-5">
 	<div class="container">
 	  <div class="row">
-      <%= render 'public/rooms/index', rooms: @user.rooms %>
+	      <div class="col-12">
+      <%= render 'public/rooms/index', rooms: @user.rooms.order(created_at: :desc) %>
+      </div>
     </div>
   </div>
 </div>

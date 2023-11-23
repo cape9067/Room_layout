@@ -1,7 +1,7 @@
 <!--同じ投稿が2つ表示されている時（public/users/show等）に、同じIDを持ってしまいカルーセルが不具合を起こしていたため、一意のIDを付けるようにした。-->
 <% rooms.each_with_index do |room, i| %>
 
-  <div class="card-index mb-3 shadow mr-2 img-thumbnail">
+  <div class="card-index mb-3 shadow mx-1 img-thumbnail">
     <% if room.images.count > 1 %>
     <!--画像が２枚以上ある場合、カルーセルをつける-->
     <div id="carouselExampleIndicators<%= i %>" class="carousel slide" data-touch="false">
@@ -45,7 +45,11 @@
           <% end %>
         </p>
         <% room.categories.each do |category| %>
-        <p class="btn btn-secondary btn-sm text-white"><i class="fa-solid fa-tag"></i><%= category.name %></p>
+        <p class="btn btn-secondary btn-sm">
+          <%= link_to public_category_search_path(category_id: category.id), method: :get, class:"text-white" do %>
+            <i class="fa-solid fa-tag"></i><%= category.name %>
+          <% end %>
+        </p>
         <% end %>
         <p><small class="text-muted">投稿日：<%= room.created_at.strftime("%Y-%m-%d") %><br>posted by <%= room.user.name %></small></p>
     </div>

@@ -15,9 +15,9 @@
       <div class="collapse navbar-collapse" id="navbar-header">
         <ul class="navbar-nav mr-auto">
           <% if admin_signed_in? %>
-          
+
             <%= render 'layouts/admin_header' %>
-            
+
           <% elsif user_signed_in? %>
 
             <li class="nav-item dropdown">
@@ -40,7 +40,7 @@
                   </a>
                 <% else %>
                   <div class="dropdown-item">
-                    <%= link_to  public_user_bookmarks_path(current_user) do %>
+                    <%= link_to  post_public_user_path(current_user) do %>
                       <i class="fa-solid fa-newspaper"></i> 投稿記事
                     <% end %>
                   </div>
