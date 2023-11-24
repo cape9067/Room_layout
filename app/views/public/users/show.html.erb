@@ -54,17 +54,19 @@
 
 
     <div class="col-md-10">
-      <div>
+      <div class="h2 m-4 font-weight-bold">
         <%= @user.name %>さんのマイページ
       </div>
+      <hr>
       <div class="d-flex justify-content-center">
       <div class="col-xl-8 col-md-11 bg-light rounded shadow">
         <div class="row d-flex align-items-center p-4 px-5">
+
       <div class="col h4 font-weight-bold">投稿した部屋(最新3件)</div>
       <div class="col text-right">
 
-      <%= link_to  post_public_user_path(current_user), class: "btn btn-success rounded-pill px-4" do %>
-                全て見る
+      <%= link_to  post_public_user_path(current_user), class: "btn btn-success rounded-pill px-3" do %>
+                もっと見る
               <% end %>
               </div>
 
@@ -79,14 +81,29 @@
       </div>
       </div>
        </div>
-      <div>
-        マイリスト
-      </div>
-      <div class="user-show-bookmark">
+
+       <hr>
+      <div class="d-flex justify-content-center">
+      <div class="col-xl-8 col-md-11 bg-light rounded shadow">
+        <div class="row d-flex align-items-center p-4 px-5">
+      <div class="col h4 font-weight-bold">マイリスト(最新3件)</div>
+      <div class="col text-right">
+
+      <%= link_to  public_user_bookmarks_path(current_user), class: "btn btn-success rounded-pill px-2" do %>
+                もっと見る
+              <% end %>
+              </div>
+                 </div>
+<hr>
+      <div class="d-flex justify-content-center">
+      <div class="user-show-post">
         <div class="row ml-1">
-          <%= render 'public/rooms/index', rooms: @user.bookmarked_rooms.order(created_at: :desc) %>
+          <%= render 'public/rooms/index', rooms: @lastest_bookmark %>
         </div>
       </div>
+      </div>
+      </div>
+       </div>
     </div>
   </div>
 </div>

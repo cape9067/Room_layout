@@ -5,6 +5,7 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @latest_rooms = @user.rooms.order(created_at: :desc).limit(3)
+    @lastest_bookmark = @user.bookmarked_rooms.order(created_at: :desc).limit(3)
   end
 
   def edit
