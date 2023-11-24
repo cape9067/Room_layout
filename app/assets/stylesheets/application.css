@@ -43,11 +43,11 @@
 
 @media screen and (max-width:1440px) {
   .user-show-post .card-index {
-    width: 230px;
+    width: 210px;
   }
 
   .user-show-post .partial-image {
-    width: 210px;  /* 画像の幅を280pxに設定 */
+    width: 190px;  /* 画像の幅を280pxに設定 */
     height: 140px; /* 画像の高さを180pxに設定 */
   }
 }
@@ -85,11 +85,11 @@
 }
 
 .card-index {
- width: 380px;
+ width: 100%;
 }
 
 .show_image {
- width: 630px;
+ width: 100%;
 }
 
 .show_image .carousel-indicators {
