@@ -1,7 +1,12 @@
+<div class="container-fluid">
+  <div class="row">
+<div class="col-md-12 mt-5">
 
+<div class="row" id="room-index">
+      	<%= render 'public/rooms/index', rooms: @rooms %>
+      </div>
 
-<div class="col-md-9 mt-5">
-	<div class="container">
-	<div class="row">
-
- <%= render 'public/rooms/index', rooms: @user.bookmarked_rooms.order(created_at: :desc) %>
+  		<div class="d-flex justify-content-center">
+  		  <%= paginate @rooms, theme: 'bootstrap-5' %>
+ 		  </div>
+		</div>

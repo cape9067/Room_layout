@@ -1,8 +1,13 @@
 <div class="container-fluid">
   <div class="row">
-    <nav id="sidebarMenu" class="col-lg-2 d-md-block bg-light sidebar collapse">
+    <nav id="sidebarMenu" class="col-lg-2 d-md-block bg-light sidebar collapse shadow">
       <div class="sidebar-sticky pt-3">
-        <ul class="nav flex-column">
+        <ul class="nav flex-column text-center">
+          <li class="nav-item">
+            <p class="nav-link">
+              <%= image_tag @user.get_profile_image, size:'100x100', class: "rounded" %>
+            </p>
+          </li>
           <li class="nav-item">
             <p class="nav-link active">
               ニックネーム<br>
@@ -42,12 +47,6 @@
               <% end %>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text"></span>
-              年末販売
-            </a>
-          </li>
         </ul>
       </div>
     </nav>
@@ -59,51 +58,46 @@
       </div>
       <hr>
       <div class="d-flex justify-content-center">
-      <div class="col-xl-8 col-md-11 bg-light rounded shadow">
-        <div class="row d-flex align-items-center p-4 px-5">
-
-      <div class="col h4 font-weight-bold">投稿した部屋(最新3件)</div>
-      <div class="col text-right">
-
-      <%= link_to  post_public_user_path(current_user), class: "btn btn-success rounded-pill px-3" do %>
+        <div class="col-xl-8 col-md-11 bg-light rounded shadow my-3">
+          <div class="row d-flex align-items-center p-4 px-5">
+            <div class="col h4 font-weight-bold">投稿した部屋(全<%= @user.rooms.count %>件)</div>
+            <div class="col text-right">
+              <%= link_to  post_public_user_path(current_user), class: "btn btn-success rounded-pill px-3" do %>
                 もっと見る
               <% end %>
+            </div>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-center">
+            <div class="user-show-post">
+              <div class="row ml-1">
+                <%= render 'public/rooms/index', rooms: @latest_rooms %>
               </div>
-
-   </div>
-<hr>
-      <div class="d-flex justify-content-center">
-      <div class="user-show-post">
-        <div class="row ml-1">
-          <%= render 'public/rooms/index', rooms: @latest_rooms %>
+            </div>
+          </div>
         </div>
       </div>
-      </div>
-      </div>
-       </div>
-
-       <hr>
+      <hr>
       <div class="d-flex justify-content-center">
-      <div class="col-xl-8 col-md-11 bg-light rounded shadow">
-        <div class="row d-flex align-items-center p-4 px-5">
-      <div class="col h4 font-weight-bold">マイリスト(最新3件)</div>
-      <div class="col text-right">
-
-      <%= link_to  public_user_bookmarks_path(current_user), class: "btn btn-success rounded-pill px-2" do %>
+        <div class="col-xl-8 col-md-11 bg-light rounded shadow my-3">
+          <div class="row d-flex align-items-center p-4 px-5">
+            <div class="col h4 font-weight-bold">マイリスト(全<%= @user.bookmarked_rooms.count %>件)</div>
+            <div class="col text-right">
+              <%= link_to  public_user_bookmarks_path(current_user), class: "btn btn-success rounded-pill px-2" do %>
                 もっと見る
               <% end %>
+            </div>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-center">
+            <div class="user-show-post">
+              <div class="row ml-1">
+                <%= render 'public/rooms/index', rooms: @lastest_bookmark %>
               </div>
-                 </div>
-<hr>
-      <div class="d-flex justify-content-center">
-      <div class="user-show-post">
-        <div class="row ml-1">
-          <%= render 'public/rooms/index', rooms: @lastest_bookmark %>
+            </div>
+          </div>
         </div>
       </div>
-      </div>
-      </div>
-       </div>
     </div>
   </div>
 </div>

@@ -25,12 +25,13 @@ class Public::UsersController < ApplicationController
 
   def post
     @user = User.find(params[:id])
+    @rooms = @user.rooms.order(created_at: :desc).page(params[:page]).per(6)
   end
 
 
   private
     def user_params
-      params.require(:user).permit(:name, :email)
+      params.require(:user).permit(:name, :email, :profile_image)
     end
 
     def ensure_guest_user

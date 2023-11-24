@@ -18,6 +18,7 @@ class Public::BookmarksController < ApplicationController
  
  def index
    @user = User.find(params[:user_id])
+   @rooms = @user.bookmarked_rooms.order(created_at: :desc).page(params[:page]).per(6)
  end
  
   private

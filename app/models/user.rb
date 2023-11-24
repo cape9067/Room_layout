@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :bookmarked_rooms, through: :bookmarks, source: :room
+  has_one_attached :profile_image
   
   GUEST_USER_EMAIL = "guest@example.com"
 
@@ -34,12 +35,16 @@ class User < ApplicationRecord
   def last_login_time
     if last_login_at
     last_login_at.strftime('%Y-%m-%d %H:%M:%S')
-  else
+    else
     '未ログイン'
-  end
+    end
   end 
   
   def after_database_authentication
- self.update_column(:last_login_at, Time.current)
- end
+    self.update_column(:last_login_at, Time.current)
+  end
+ 
+  def get_profile_image
+    (profile_image.attached?) ? profile_image : 'no_user_image.jpg'
+  end
 end

@@ -3,6 +3,7 @@ class Room < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
   validates :images, presence: true, length: { maximum: 3 }
+  validates :category_id, presence: true, length: { maximum: 3 }
   validate :image_limit
 
   # アソシエーション

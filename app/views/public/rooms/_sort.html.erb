@@ -1,3 +1,10 @@
-  <%= link_to '新着順', public_rooms_path(sort: 'newest'), class: "btn btn-secondary rounded-pill mx-2 text-white" %>
-	<%= link_to 'いいね順', public_rooms_path(sort: 'likes'), class: "btn btn-secondary rounded-pill mx-2 text-white" %>
-	<%= link_to 'ブックマーク順', public_rooms_path(sort: 'bookmarks'), class: "btn btn-secondary rounded-pill mx-2 text-white" %>
+	<div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle text-white" role="button" data-toggle="dropdown" aria-expanded="false">
+    並び替え
+  </a>
+  <div class="dropdown-menu">
+    <p class="dropdown-item"><%= link_to '新着順', public_rooms_path(sort: 'newest') %></p>
+    <p class="dropdown-item"><%= link_to 'いいね数順', public_rooms_path(sort: 'likes') %></p>
+    <p class="dropdown-item"><%= link_to 'ブックマーク数順', public_rooms_path(sort: 'bookmarks') %></p>
+  </div>
+</div>
