@@ -1,6 +1,6 @@
 class Category < ApplicationRecord
   # バリデーション
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   
   # アソシエーション
   has_many :rooms, through: :room_categories

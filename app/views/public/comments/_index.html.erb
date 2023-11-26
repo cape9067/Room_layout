@@ -5,7 +5,7 @@
    <div class="container">
  <div class="row d-flex align-items-center pb-3">
    <div class="col pl-1">
-     <%= image_tag @user.get_profile_image, size:'30x30', class: "rounded" %>　<%= comment.user.name %>さん
+     <%= image_tag comment.user.get_profile_image, size:'30x30', class: "rounded" %>　<%= comment.user.name %>さん
    </div>
    <div class="col d-flex justify-content-end">
      <%= comment.created_at.strftime('%Y/%m/%d') %>
@@ -29,7 +29,7 @@
  
  <% if @room.comments.count > 3 %>
 <div class="text-right">
- <%= link_to 'すべてのコメントを見る', public_room_comments_path(@room) %>
+ <%= link_to 'すべてのコメントを見る', public_room_comments_path(room) %>
 </div>
   <hr>
 <% end %>

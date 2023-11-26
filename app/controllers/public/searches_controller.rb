@@ -17,6 +17,7 @@ class Public::SearchesController < ApplicationController
   
   def category_search
     @categories = Category.all
+    @category = Category.find(params[:category_id])
     @latest_rooms = Room.order(created_at: :desc).limit(4)
     category_id = params[:category_id]
 		rooms = Room.joins(room_categories: :category).where(categories: { id: category_id }).page(params[:page]).per(6)

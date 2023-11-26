@@ -63,7 +63,7 @@
             <div class="col h4 font-weight-bold">投稿した部屋(全<%= @user.rooms.count %>件)</div>
             <div class="col text-right">
               <%= link_to  post_public_user_path(current_user), class: "btn btn-success rounded-pill px-3" do %>
-                もっと見る
+                もっとみる
               <% end %>
             </div>
           </div>
@@ -84,7 +84,7 @@
             <div class="col h4 font-weight-bold">マイリスト(全<%= @user.bookmarked_rooms.count %>件)</div>
             <div class="col text-right">
               <%= link_to  public_user_bookmarks_path(current_user), class: "btn btn-success rounded-pill px-2" do %>
-                もっと見る
+                もっとみる
               <% end %>
             </div>
           </div>

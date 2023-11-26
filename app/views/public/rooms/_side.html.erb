@@ -1,5 +1,5 @@
 <div class="h3 mt-4">
-	カテゴリー
+	カテゴリ
 </div>
 
 <hr>
@@ -7,9 +7,14 @@
 <div class="ml-4 h4">
 	<%= form_with url: public_category_search_path, method: :get do |f| %>
     <% categories.each do |category| %>
+    <table>
       <tr>
-        <td class="border border-0 align-middle"><%= link_to category.name, public_category_search_path(category_id: category.id), method: :get %></td>
+        <td class="border border-0 align-middle mb-2" style="color:black;">
+          <%= link_to category.name, public_category_search_path(category_id: category.id), method: :get %>
+          <small><small>(<%= category.room_categories.count %>)</small></small>
+          </td>
       </tr>
+      </table>
     <% end %>
   <% end %>
 </div>
@@ -32,7 +37,7 @@
         <div class="p-2 mt-2">
           <h5 class="card-title font-weight-bold">
           	<%= link_to public_room_path(room) do %>
-        	    <%= room.title %>
+        	    <%= room.title.truncate(13) %>
           	<% end %>
         	</h5>
           <p class="card-text"><small class="text-muted"><%= room.created_at.strftime("%Y-%m-%d") %><br>posted by <%= room.user.name %></small></p>

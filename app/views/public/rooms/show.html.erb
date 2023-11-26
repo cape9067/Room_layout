@@ -1,7 +1,11 @@
 <div class="row">
-
-  <div class="col-xl-6 d-flex justify-content-center">
+  <div class="col-xl-9">
+<div class="row">
+  <div class="col-xl-7 d-flex justify-content-center">
     <div class="ml-5">
+      <div class="col-12 mt-4 ml-2">
+      <%= link_to "←　戻る", public_rooms_path(page: params[:page]), class:"btn btn-secondary text-white rounded-pill" %>
+    </div>
       <div class="show_image">
         <% if @room.images.count > 1 %>
         <div id="carouselExampleIndicators" class="carousel slide" data-touch="false">
@@ -36,8 +40,8 @@
     </div>
   </div>
 
-  <div class="col-xl-3 d-flex align-items-center">
-    <table class="table table-bordered bg-white">
+  <div class="col-xl-4 d-flex align-items-center">
+    <table class="table table-striped bg-white">
       <tr>
         <th class="w-25">タイトル</th>
         <td><%= @room.title %></td>
@@ -54,12 +58,29 @@
         <th>投稿日</th>
         <td><%= @room.created_at.strftime("%Y年%m月%d日") %></td>
       </tr>
+    <tr>
+      <th></th>
+      <td>
+        <div class="row">
+        <div class="mx-3" id="likes_form_<%= @room.id %>">
+          <%= render 'public/likes/form', room: @room %>
+        </div>
+        <div class="mx-3" id="bookmarks_form_<%= @room.id %>">
+          <%= render 'public/bookmarks/form', room: @room %>
+        </div>
+        </div>
+        </td>
+    </tr>
     </table>
+
+
+
   </div>
-  
+  </div>
+
   <div class="container">
     <div class="row">
-      <div class="col-10">
+      <div class="col-12">
         <div id="comments_area">
           <%= render "public/comments/index", comments: @comments, room: @room %>
         </div>
@@ -69,8 +90,8 @@
       </div>
     </div>
   </div>
-
-  <div class="col-xl-2">
+</div>
+  <div class="col-md-3 bg-primary p-4">
     <%= render 'side', categories: @categories, rooms: @rooms %>
   </div>
 </div>

@@ -1,7 +1,10 @@
 <div class="container-fluid">
   <div class="row">
-<div class="col-md-12 mt-5">
-
+<div class="col-md-12">
+<div class="h2 m-4 font-weight-bold">
+        <%= @user.name %>さんのマイリスト<small><small>(全<%= @user.bookmarked_rooms.count %>件)</small></small>
+      </div>
+      <hr>
 <div class="row" id="room-index">
       	<%= render 'public/rooms/index', rooms: @rooms %>
       </div>
