@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="col-10">
     <div class="text-left">
-      <%= form_with model: room, url: public_rooms_path, local:true do |f| %>
+      <%= form_with model: room, url: locals[:url], method: locals[:method], local:true do |f| %>
         <div class="my-4">
           <%= f.label :"部屋画像(3枚まで)", class: "font-weight-bold mr-2" %>
           <kbd> Ctrl</kbd>で複数選択可

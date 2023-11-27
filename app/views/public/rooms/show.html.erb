@@ -103,7 +103,7 @@
       <div class="row">
         <div class="col-lg-12">
           <div id="comments_area">
-            <%= render "public/comments/index", comments: @comments, room: @room %>
+            <%= render "public/comments/index", comments: @comments, room: @room, comment: @comment %>
           </div>
           <div>
             <%= render "public/comments/form", room: @room, comment: @comment %>

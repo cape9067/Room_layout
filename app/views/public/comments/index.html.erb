@@ -1,5 +1,11 @@
 <div class="container">
+     <div class="row">
+      <div class="col-12 mt-4">
+        <%= link_to "←　戻る", public_room_path(@room), class:"btn btn-secondary text-white rounded-pill shadow" %>
+      </div>
+    </div>
 <h4 class="my-5">"<%= @room.title %>"のコメント一覧(<%= @comments.count %>件)</h4>
+<%= render 'layouts/errors', obj: @comment %>
 <%= render 'layouts/flash'%>
 <hr>
 <% @comments.each do |comment| %>
@@ -35,7 +41,7 @@
  		  </div>
 
  <div class="guest-form">
-  <%= form_with model: [@room, @comment], url: public_room_comments_path(@room), local: false do |f| %>
+  <%= form_with model: [@room, @comment], url: public_room_comments_path(@room), local: true do |f| %>
     <%= f.label "コメントを投稿する" %>
     <%= f.text_area :comment, rows:'5', placeholder: "コメントをここに", class: "form-control my-3" %>
     <div class="text-right">

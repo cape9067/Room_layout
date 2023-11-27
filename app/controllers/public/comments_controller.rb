@@ -9,7 +9,7 @@ class Public::CommentsController < ApplicationController
   respond_to do |format|
   if @comment.save
    flash[:success] =  "コメントの投稿に成功しました。"
-     format.html { redirect_to request.referer }
+   format.html { redirect_to request.referer }
   format.js
   else
    flash[:danger] ="コメントの投稿に失敗しました。"

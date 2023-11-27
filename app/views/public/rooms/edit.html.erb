@@ -10,7 +10,7 @@
     <div class="text-center">
       <div class="m-3 h3 font-weight-bold">編集フォーム</div>
       <%= render 'layouts/errors', obj: @room %>
-      <%= render 'form', room: @room %>
+      <%= render 'form', locals: { url: public_room_path(@room), method: :put }, room: @room %>
     </div>
   </div>
 </div>
