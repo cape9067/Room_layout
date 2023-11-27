@@ -1,5 +1,6 @@
 <div class="container">
 <h4 class="my-5">"<%= @room.title %>"のコメント一覧(<%= @comments.count %>件)</h4>
+<%= render 'layouts/flash'%>
 <hr>
 <% @comments.each do |comment| %>
 <p>
@@ -22,13 +23,17 @@
        <button class="btn btn-outline-secondary">削除する</button>
      </div>
    <% end %>
-  
+
  <% end %>
  <hr>
 </div>
  </p>
  <% end %>
- 
+
+ <div class="d-flex justify-content-center">
+  		  <%= paginate @comments, theme: 'bootstrap-5' %>
+ 		  </div>
+
  <div class="guest-form">
   <%= form_with model: [@room, @comment], url: public_room_comments_path(@room), local: false do |f| %>
     <%= f.label "コメントを投稿する" %>

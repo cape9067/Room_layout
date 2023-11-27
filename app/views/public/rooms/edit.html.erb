@@ -1,6 +1,16 @@
-<h1>投稿編集</h1>
+<%= render 'layouts/flash'%>
+<div class="row ml-5">
+  <div class="col-12 mt-4 ml-3">
+    <%= link_to "←　戻る", public_room_path(@room), class:"btn btn-secondary text-white rounded-pill shadow" %>
+    </div>
+</div>
 
-
-
-<%= link_to 'Show', @room %> |
-<%= link_to 'Back', public_rooms_path %>
+<div class="container d-flex justify-content-center">
+  <div class="col-lg-6 col-md-10 d-flex justify-content-center border rounded p-3 shadow bg-white mt-5">
+    <div class="text-center">
+      <div class="m-3 h3 font-weight-bold">編集フォーム</div>
+      <%= render 'layouts/errors', obj: @room %>
+      <%= render 'form', room: @room %>
+    </div>
+  </div>
+</div>

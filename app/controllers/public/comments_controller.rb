@@ -6,10 +6,16 @@ class Public::CommentsController < ApplicationController
   @room = Room.find(params[:room_id])
   @comment = current_user.comments.new(comment_params)
   @comment.room_id = @room.id
+  respond_to do |format|
   if @comment.save
-   flash.now[:notice] = "コメントの投稿に成功しました。"
+   flash[:success] =  "コメントの投稿に成功しました。"
+     format.html { redirect_to request.referer }
+  format.js
   else
-   flash.now[:alert] ="コメントの投稿に失敗しました。"
+   flash[:danger] ="コメントの投稿に失敗しました。"
+     format.html { redirect_to request.referer }
+  format.js
+  end
   end
   end
 
@@ -25,7 +31,7 @@ class Public::CommentsController < ApplicationController
 
  def index
   @room = Room.find(params[:room_id])
-  @comments = @room.comments.all
+  @comments = @room.comments.all.page(params[:page]).per(10)
   @comment = Comment.new
  end
 

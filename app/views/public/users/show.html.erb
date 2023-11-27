@@ -27,18 +27,30 @@
         </h5>
         <ul class="nav flex-column mb-2">
           <li class="nav-item">
+            <% if @user.guest_user? %>
+            <div class="nav-link disabled">
+                <i class="fa-solid fa-newspaper mr-3"></i>投稿記事
+            </div>
+            <% else %>
             <div class="nav-link">
-              <%= link_to  post_public_user_path(current_user) do %>
+              <%= link_to post_public_user_path(current_user) do %>
                 <i class="fa-solid fa-newspaper mr-3"></i>投稿記事
               <% end %>
             </div>
+            <% end %>
           </li>
           <li class="nav-item">
+            <% if @user.guest_user? %>
+            <div class="nav-link disabled">
+              <i class="fa-solid fa-folder mr-3"></i>マイリスト
+            </div>
+            <% else %>
             <div class="nav-link">
               <%= link_to  public_user_bookmarks_path(current_user) do %>
                 <i class="fa-solid fa-folder mr-3"></i>マイリスト
               <% end %>
             </div>
+            <% end %>
           </li>
           <li class="nav-item">
             <div class="nav-link">
@@ -53,6 +65,7 @@
 
 
     <div class="col-md-10">
+      <%= render 'layouts/flash'%>
       <div class="h2 m-4 font-weight-bold">
         <%= @user.name %>さんのマイページ
       </div>
@@ -60,7 +73,7 @@
       <div class="d-flex justify-content-center">
         <div class="col-xl-8 col-md-11 bg-light rounded shadow my-3">
           <div class="row d-flex align-items-center p-4 px-5">
-            <div class="col h4 font-weight-bold">投稿した部屋(全<%= @user.rooms.count %>件)</div>
+            <div class="col h4 font-weight-bold">投稿した記事(全<%= @user.rooms.count %>件)</div>
             <div class="col text-right">
               <%= link_to  post_public_user_path(current_user), class: "btn btn-success rounded-pill px-3" do %>
                 もっとみる
@@ -69,11 +82,15 @@
           </div>
           <hr>
           <div class="d-flex justify-content-center">
+            <% if @user.rooms.empty? %>
+              <p class="my-5 font-weight-bold h5">まだ投稿した記事はありません。</p>
+            <% else %>
             <div class="user-show-post">
               <div class="row ml-1">
                 <%= render 'public/rooms/index', rooms: @latest_rooms %>
               </div>
             </div>
+            <% end %>
           </div>
         </div>
       </div>
@@ -90,11 +107,15 @@
           </div>
           <hr>
           <div class="d-flex justify-content-center">
+            <% if @user.bookmarked_rooms.empty? %>
+            <p class="my-5 font-weight-bold h5">マイリストに登録した記事はありません。</p>
+            <% else %>
             <div class="user-show-post">
               <div class="row ml-1">
                 <%= render 'public/rooms/index', rooms: @lastest_bookmark %>
               </div>
             </div>
+            <% end %>
           </div>
         </div>
       </div>

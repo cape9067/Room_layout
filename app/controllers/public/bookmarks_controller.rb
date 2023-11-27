@@ -1,6 +1,6 @@
 class Public::BookmarksController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_guest_user, only: [:create]
+  before_action :ensure_guest_user, only: [:create, :index]
   
   def create
   @room = Room.find(params[:room_id])
@@ -25,7 +25,7 @@ class Public::BookmarksController < ApplicationController
   
  def ensure_guest_user
    if current_user.guest_user?
-     redirect_to request.referer, notice: "ゲストユーザーはブックマーク機能を使えません。"
+     redirect_to request.referer, notice: "会員限定の機能です。"
    end
  end
 

@@ -1,98 +1,119 @@
 <div class="row">
   <div class="col-xl-9">
-<div class="row">
-  <div class="col-xl-7 d-flex justify-content-center">
-    <div class="ml-5">
-      <div class="col-12 mt-4 ml-2">
-      <%= link_to "←　戻る", public_rooms_path(page: params[:page]), class:"btn btn-secondary text-white rounded-pill" %>
+    <%= render 'layouts/flash'%>
+    <div class="row ml-5">
+      <div class="col-12 mt-4 ml-3">
+        <%= link_to "←　戻る", public_rooms_path(page: params[:page]), class:"btn btn-secondary text-white rounded-pill shadow" %>
+      </div>
     </div>
-      <div class="show_image">
-        <% if @room.images.count > 1 %>
-        <div id="carouselExampleIndicators" class="carousel slide" data-touch="false">
-          <ol class="carousel-indicators">
-            <% @room.images.each_with_index do |image, index| %>
-              <li data-target="#carouselExampleIndicators" data-slide-to="<%= index %>" class="<%= 'active' if index == 0 %>"></li>
-            <% end %>
-          </ol>
-
-          <div class="carousel-inner">
-            <% @room.images.each_with_index do |image, index| %>
-              <div class="carousel-item <%= 'active' if index == 0 %>">
-                 <%= image_tag image, size: "600x400", class: "bg-white border shadow p-1 m-4" %>
+    <div class="row">
+      <div class="col-xl-6 d-flex justify-content-center">
+        <div class="ml-5">
+          <div class="show_image">
+            <% if @room.images.count > 1 %>
+              <div id="carouselExampleIndicators" class="carousel slide" data-touch="false">
+                <ol class="carousel-indicators">
+                  <% @room.images.each_with_index do |image, index| %>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="<%= index %>" class="<%= 'active' if index == 0 %>"></li>
+                  <% end %>
+                </ol>
+                <div class="carousel-inner">
+                  <% @room.images.each_with_index do |image, index| %>
+                    <div class="carousel-item <%= 'active' if index == 0 %>">
+                      <%= image_tag image, size: "600x400", class: "bg-white border shadow p-1 m-4" %>
+                    </div>
+                  <% end %>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">前へ</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">次へ</span>
+                </a>
               </div>
+            <% else %>
+              <%= image_tag @room.images.first, size: "600x400", class: "bg-white border shadow p-1 m-4" %>
             <% end %>
           </div>
-
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">前へ</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">次へ</span>
-          </a>
         </div>
-        <% else %>
-          <!--画像が１枚の場合、そのまま表示-->
-          <%= image_tag @room.images.first, size: "600x400", class: "bg-white border shadow p-1 m-4" %>
-        <% end %>
+      </div>
+      <div class="col-xl-5 d-flex align-items-center">
+        <table class="table table-striped bg-white">
+          <tr>
+            <th class="w-25">タイトル</th>
+            <td><%= @room.title %></td>
+          </tr>
+          <tr>
+            <th>投稿者</th>
+            <td><%= @room.user.name %></td>
+          </tr>
+          <tr>
+            <th>説明</th>
+            <td><%= @room.body %></td>
+          </tr>
+          <tr>
+            <th>投稿日</th>
+            <td><%= @room.created_at.strftime("%Y年%m月%d日") %></td>
+          </tr>
+
+        </table>
       </div>
     </div>
-  </div>
 
-  <div class="col-xl-4 d-flex align-items-center">
-    <table class="table table-striped bg-white">
-      <tr>
-        <th class="w-25">タイトル</th>
-        <td><%= @room.title %></td>
-      </tr>
-      <tr>
-        <th>投稿者</th>
-        <td><%= @room.user.name %></td>
-      </tr>
-      <tr>
-        <th>説明</th>
-        <td><%= @room.body %></td>
-      </tr>
-      <tr>
-        <th>投稿日</th>
-        <td><%= @room.created_at.strftime("%Y年%m月%d日") %></td>
-      </tr>
-    <tr>
-      <th></th>
-      <td>
-        <div class="row">
-        <div class="mx-3" id="likes_form_<%= @room.id %>">
-          <%= render 'public/likes/form', room: @room %>
-        </div>
-        <div class="mx-3" id="bookmarks_form_<%= @room.id %>">
-          <%= render 'public/bookmarks/form', room: @room %>
-        </div>
-        </div>
-        </td>
-    </tr>
-    </table>
-
-
-
-  </div>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div id="comments_area">
-          <%= render "public/comments/index", comments: @comments, room: @room %>
-        </div>
-        <div>
-          <%= render "public/comments/form", room: @room, comment: @comment %>
+    <div class="container mt-5">
+      <div class="row d-flex justify-content-center">
+        <div class="col-9">
+          <div class="bg-white rounded shadow-sm">
+            <div class="row">
+              <div class="col text-center">
+                <p class="font-weight-bold">いいね数</p>
+                <div class="" id="likes_form_<%= @room.id %>">
+                  <%= render 'public/likes/form', room: @room %>
+                </div>
+              </div>
+              <div class="col text-center">
+                <p class="font-weight-bold">マイリスト数</p>
+                <div class="" id="bookmarks_form_<%= @room.id %>">
+                  <%= render 'public/bookmarks/form', room: @room %>
+                </div>
+              </div>
+              <% if @room.user == current_user %>
+              <div class="col d-flex align-items-center justify-content-center">
+                <%= link_to edit_public_room_path(@room), class: "btn btn-success btn-sm" do%>
+                  編集
+                <% end %>
+              </div>
+              <div class="col d-flex align-items-center justify-content-center">
+                <%= link_to public_room_path(@room), method: :delete, class: "btn btn-danger btn-sm" do%>
+                  削除
+                <% end %>
+              </div>
+               
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div id="comments_area">
+            <%= render "public/comments/index", comments: @comments, room: @room %>
+          </div>
+          <div>
+            <%= render "public/comments/form", room: @room, comment: @comment %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
   <div class="col-md-3 bg-primary p-4">
-    <%= render 'side', categories: @categories, rooms: @rooms %>
+    <%= render 'side', categories: @categories, rooms: @latest_rooms %>
   </div>
 </div>
 

@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
          
-  validates :name, presence: true
+  validates :name, presence: true, length: { minimum: 1, maximum: 20 }
   validates :email, presence: true, format: { with: /\A[a-zA-Z0-9]{1,}[@][a-zA-Z0-9]{1,}[.][a-zA-Z0-9]{1,}\z/ }, uniqueness: true
   
   has_many :rooms, dependent: :destroy

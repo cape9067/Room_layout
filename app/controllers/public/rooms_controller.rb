@@ -23,7 +23,7 @@ class Public::RoomsController < ApplicationController
     @comments = Comment.where(room_id: params[:room_id]).order(id: :asc).limit(3)
     @comment = Comment.new
     @categories = Category.all
-    @rooms = Room.all
+    @latest_rooms = Room.order(created_at: :desc).limit(4)
   end
 
   # GET /rooms/new

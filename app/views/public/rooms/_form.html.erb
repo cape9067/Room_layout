@@ -1,25 +1,29 @@
-<div class="text-left">
-<%= form_with model: room, url: public_rooms_path, local:true do |f| %>
-<div class="my-4">
-  <%= f.label :"部屋画像(3枚まで)", class: "font-weight-bold mr-2" %>
-  <kbd> Ctrl</kbd>で複数選択可
-  <%= f.file_field :images, class: "form-control-file image", accept: 'image/*', multiple: true %>
-  </div>
-<div class="my-4">
-  <%= f.label :タイトル, class: "font-weight-bold" %>
-  <%= f.text_field :title, placeholder: "タイトルを入力", class: "form-control name" %>
-  </div>
-<div class="my-4">
-  <%= f.label :内容, class: "font-weight-bold" %>
-  <%= f.text_area :body, placeholder: "内容を入力", class: "form-control name" %>
-  </div>
-<div class="my-4">
-  <%= f.label :"カテゴリ(3個まで)", class: "font-weight-bold" %>
-  <% Category.all.each do |category| %>
-   <%= check_box_tag 'room[category_ids][]', category.id, room.categories.include?(category) %>
-   <%= category.name %>
-  <% end %>
+<div class="d-flex justify-content-center">
+  <div class="col-10">
+    <div class="text-left">
+      <%= form_with model: room, url: public_rooms_path, local:true do |f| %>
+        <div class="my-4">
+          <%= f.label :"部屋画像(3枚まで)", class: "font-weight-bold mr-2" %>
+          <kbd> Ctrl</kbd>で複数選択可
+          <%= f.file_field :images, class: "form-control-file image", accept: 'image/*', multiple: true %>
+        </div>
+        <div class="my-4">
+          <%= f.label :タイトル, class: "font-weight-bold" %>
+          <%= f.text_field :title, placeholder: "タイトルを入力", class: "form-control name" %>
+        </div>
+        <div class="my-4">
+          <%= f.label :内容, class: "font-weight-bold" %>
+          <%= f.text_area :body, placeholder: "内容を入力", class: "form-control name" %>
+        </div>
+        <div class="my-4">
+          <%= f.label :"カテゴリ(3個まで)", class: "font-weight-bold" %><br>
+          <% Category.all.each do |category| %>
+          <%= check_box_tag 'room[category_ids][]', category.id, room.categories.include?(category), class:"ml-2" %>
+          <%= category.name %>
+          <% end %>
+        </div>
+    </div>
+      <%= f.submit :投稿, class: "btn btn-success rounded-pill form-control w-100" %>
+      <% end %>
   </div>
 </div>
-  <%= f.submit :投稿, class: "btn btn-success rounded-pill form-control w-100" %>
-<% end %>
