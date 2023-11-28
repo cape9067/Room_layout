@@ -22,7 +22,7 @@ devise_scope :user do
   end
 
  root :to => "public/homes#top"
- get '/admin' => 'admin/homes#top'
+ get '/admin' => 'admin/sign_in'
 
   namespace :public do
    
