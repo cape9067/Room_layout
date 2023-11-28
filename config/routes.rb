@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
  devise_scope :user do
    get '/users/sign_out' => 'public/sessions#destroy'
+   get '/users', to: 'public/registrations#new'
  end
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
@@ -23,7 +24,7 @@ devise_scope :user do
 
  root :to => "public/homes#top"
  get '/admin' => 'admin/homes#top'
-
+ 
   namespace :public do
    
    get 'search', to: 'searches#search'

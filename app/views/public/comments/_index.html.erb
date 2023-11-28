@@ -1,6 +1,6 @@
 <p class="my-5">コメント一覧(<%= room.comments.count %>件)</p>
-<%= render 'layouts/errors', obj: comment %>
 <%= render 'layouts/flash'%>
+<%= render 'layouts/errors', obj: comment %>
 <hr>
 <% room.comments.first(3).each do |comment| %>
 <p>
