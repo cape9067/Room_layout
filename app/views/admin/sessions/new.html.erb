@@ -1,10 +1,8 @@
 <div class="container">
   <div class="row">
-    
     <p class="col-3 font-weight-bold bg-secondary text-light text-center m-5 h4">
       管理者ログイン
     </p>
-    
   </div>
 </div>
 
@@ -15,12 +13,10 @@
         <%= f.label :email, "メールアドレス"%>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@sample.com", class: "form-control" %>
       </div>
-
       <div class="field form-row mb-4 font-weight-bold">
         <%= f.label :password, "パスワード"%>
         <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
       </div>
-
       <div class="actions d-flex justify-content-center">
         <%= f.submit "ログイン", class: "btn btn-primary col-4" %>
       </div>

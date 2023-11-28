@@ -1,7 +1,7 @@
 <%= form_with model: @category, url: admin_categories_path, local:true do |f| %>
-      <div class="form-group d-flex justify-content-between text-nowrap mt-3 mb-3">
-        <%= f.label :カテゴリー名, class: "font-weight-bold mr-5" %>
-        <%= f.text_field :name, placeholder: "カテゴリー名を入力", class: "form-control name mr-5 ml-5" %>
-        <%= f.submit :新規登録, class: 'btn btn-success ml-5' %>
-      </div>
-    <% end %>
+  <div class="form-group d-flex justify-content-between text-nowrap mt-3 mb-3">
+    <%= f.label :カテゴリー名, class: "font-weight-bold mr-5" %>
+    <%= f.text_field :name, placeholder: "カテゴリー名を入力", class: "form-control name mr-5 ml-5" %>
+    <%= f.submit :新規登録, class: 'btn btn-success ml-5' %>
+  </div>
+<% end %>

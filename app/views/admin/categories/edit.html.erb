@@ -1,12 +1,4 @@
 <%= render 'layouts/flash'%>
-
- <div class="col-7">
-
+  <div class="col-7">
     <%= render 'form', category: @category %>
-
   </div>
-
-<%= link_to 'Back', admin_categories_path %>
-<%= link_to admin_category_path(@category), method: :delete, class: "btn btn-success" do%>
-                削除する
-            <% end %>

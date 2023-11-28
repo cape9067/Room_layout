@@ -4,34 +4,34 @@
 <hr>
 <% room.comments.first(3).each do |comment| %>
 <p>
-   <div class="container">
- <div class="row d-flex align-items-center pb-3">
-   <div class="col pl-1">
-     <%= image_tag comment.user.get_profile_image, size:'30x30', class: "rounded" %>　<%= comment.user.name %>さん
-   </div>
-   <div class="col d-flex justify-content-end">
-     <%= comment.created_at.strftime('%Y/%m/%d') %>
-   </div>
- </div>
- <div class="card-body border rounded mb-3 bg-white">
-   <%= comment.comment %>
- </div>
- <hr class="d-none">
- <% if comment.user == current_user %>
-   <%= link_to public_room_comment_path(room, comment), method: :delete, remote: true do %>
-     <div class="text-right">
-       <button class="btn btn-outline-secondary">削除する</button>
-   <% end %>
-   </div>
- <% end %>
- <hr>
-</div>
- </p>
- <% end %>
+  <div class="container">
+    <div class="row d-flex align-items-center pb-3">
+      <div class="col pl-1">
+        <%= image_tag comment.user.get_profile_image, size:'30x30', class: "rounded" %>　<%= comment.user.name %>さん
+      </div>
+      <div class="col d-flex justify-content-end">
+        <%= comment.created_at.strftime('%Y/%m/%d') %>
+      </div>
+    </div>
+    <div class="card-body border rounded mb-3 bg-white">
+      <%= comment.comment %>
+    </div>
+    <hr class="d-none">
+    <% if comment.user == current_user %>
+       <%= link_to public_room_comment_path(room, comment), method: :delete, remote: true do %>
+         <div class="text-right">
+           <button class="btn btn-outline-secondary">削除する</button>
+       <% end %>
+         </div>
+    <% end %>
+    <hr>
+  </div>
+</p>
+<% end %>
  
- <% if @room.comments.count > 3 %>
-<div class="text-right">
- <%= link_to 'すべてのコメントを見る', public_room_comments_path(room) %>
-</div>
-  <hr>
+<% if @room.comments.count > 3 %>
+  <div class="text-right">
+    <%= link_to 'すべてのコメントを見る', public_room_comments_path(room) %>
+  </div>
+<hr>
 <% end %>

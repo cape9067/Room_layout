@@ -1,26 +1,19 @@
-
 <div class="container-fluid">
-<div class="full-page-image">
- <img src="/assets/room.png" alt="Background Image"></img>
- <div class="overlay-text">
-     <%= render 'layouts/flash'%>
-   <div class="col-xs-8">
-   <h2 class="text-center font-weight-bold">へやもよう<br>
-ここは部屋のアイデアを共有する<br>コミュニティサイト。<br>
-設計のインスピレーションを見つけ、<br>自分の部屋を変身させよう！</h2>
-</div>
-<div class="col-xs-4">
-<%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, class: "btn btn-secondary btn-block mb-3 text-white sign_in", method: :post %>
-<%= link_to "Log in",new_user_session_path, class: "btn btn-info btn-block mb-3 sign_in" %>
-<%= link_to "Sign Up",new_user_registration_path, class: "btn btn-success btn-block sign_up" %>
- </div>
-</div>
-
-    </div>
-
-
-
-
-
+  <div class="full-page-image">
+    <img src="/assets/room.png" alt="Background Image"></img>
+    <div class="overlay-text">
+      <%= render 'layouts/flash'%>
+      <div class="col-xs-8">
+        <h2 class="text-center font-weight-bold">へやもよう<br>
+          ここは部屋のアイデアを共有する<br>コミュニティサイト。<br>
+          設計のインスピレーションを見つけ、<br>自分の部屋を変身させよう！
+        </h2>
+      </div>
+      <div class="col-xs-4">
+        <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, class: "btn btn-secondary btn-block mb-3 text-white sign_in", method: :post %>
+        <%= link_to "Log in",new_user_session_path, class: "btn btn-info btn-block mb-3 sign_in" %>
+        <%= link_to "Sign Up",new_user_registration_path, class: "btn btn-success btn-block sign_up" %>
+      </div>
     </div>
   </div>
+</div>

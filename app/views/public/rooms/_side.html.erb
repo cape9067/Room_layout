@@ -12,9 +12,9 @@
         <td class="border border-0 align-middle mb-2 font-weight-bold">
           <%= link_to category.name, public_category_search_path(category_id: category.id), method: :get %>
           <small><small>(<%= category.room_categories.count %>)</small></small>
-          </td>
+        </td>
       </tr>
-      </table>
+    </table>
     <% end %>
   <% end %>
 </div>

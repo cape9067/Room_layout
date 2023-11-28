@@ -1,15 +1,17 @@
 <div class="container-fluid">
   <div class="row">
-<div class="col-md-12">
-<div class="h2 m-4 font-weight-bold">
+    <div class="col-md-12">
+      <div class="h2 m-4 font-weight-bold">
         <%= @user.name %>さんのマイリスト<small><small>(全<%= @user.bookmarked_rooms.count %>件)</small></small>
       </div>
       <hr>
-<div class="row" id="room-index">
+      <div class="row" id="room-index">
       	<%= render 'public/rooms/index', rooms: @rooms %>
       </div>
-
   		<div class="d-flex justify-content-center">
   		  <%= paginate @rooms, theme: 'bootstrap-5' %>
  		  </div>
 		</div>
+	</div>
+</div>
+

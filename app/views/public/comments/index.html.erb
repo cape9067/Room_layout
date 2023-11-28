@@ -1,58 +1,59 @@
 <div class="container">
-     <div class="row">
-      <div class="col-12 mt-4">
-        <%= link_to "←　戻る", public_room_path(@room), class:"btn btn-secondary text-white rounded-pill shadow" %>
-      </div>
+  <div class="row">
+    <div class="col-12 mt-4">
+      <%= link_to "←　戻る", public_room_path(@room), class:"btn btn-secondary text-white rounded-pill shadow" %>
     </div>
-<h4 class="my-5">"<%= @room.title %>"のコメント一覧(<%= @comments.count %>件)</h4>
-<%= render 'layouts/flash'%>
-<%= render 'layouts/errors', obj: @comment %>
-<hr>
-<% @comments.each do |comment| %>
-<p>
-   <div class="container">
- <div class="row d-flex align-items-center pb-3">
-   <div class="col pl-1">
-     <%= comment.user.name %>さん
-   </div>
-   <div class="col d-flex justify-content-end">
-     <%= comment.created_at.strftime('%Y/%m/%d') %>
-   </div>
- </div>
- <div class="card-body border rounded mb-3 bg-white">
-   <%= comment.comment %>
- </div>
- <hr class="d-none">
- <% if comment.user == current_user %>
-   <%= link_to public_room_comment_path(@room, comment), method: :delete, local: true do %>
-     <div class="text-right">
-       <button class="btn btn-outline-secondary">削除する</button>
-     </div>
-   <% end %>
-
- <% end %>
- <hr>
-</div>
- </p>
- <% end %>
-
- <div class="d-flex justify-content-center">
-  		  <%= paginate @comments, theme: 'bootstrap-5' %>
- 		  </div>
-
- <div class="guest-form">
-  <%= form_with model: [@room, @comment], url: public_room_comments_path(@room), local: true do |f| %>
-    <%= f.label "コメントを投稿する" %>
-    <%= f.text_area :comment, rows:'5', placeholder: "コメントをここに", class: "form-control my-3" %>
-    <div class="text-right">
-  <%= f.submit "コメントする", class: 'btn btn-primary text-white' %>
-    </div>
-  <% end %>
-  <!--ゲストユーザーの場合オーバーレイを表示-->
-  <div class="overlay">
-   <div class="message">コメントは会員限定です</div>
   </div>
-</div>
+  
+  <h4 class="my-5">"<%= @room.title %>"のコメント一覧(<%= @comments.count %>件)</h4>
+  <%= render 'layouts/flash'%>
+  <%= render 'layouts/errors', obj: @comment %>
+  <hr>
+  
+  <% @comments.each do |comment| %>
+    <p>
+      <div class="container">
+        <div class="row d-flex align-items-center pb-3">
+          <div class="col pl-1">
+            <%= comment.user.name %>さん
+          </div>
+          <div class="col d-flex justify-content-end">
+            <%= comment.created_at.strftime('%Y/%m/%d') %>
+          </div>
+        </div>
+        <div class="card-body border rounded mb-3 bg-white">
+          <%= comment.comment %>
+        </div>
+        <hr class="d-none">
+        <% if comment.user == current_user %>
+          <%= link_to public_room_comment_path(@room, comment), method: :delete, local: true do %>
+            <div class="text-right">
+              <button class="btn btn-outline-secondary">削除する</button>
+            </div>
+          <% end %>
+        <% end %>
+        <hr>
+      </div>
+    </p>
+  <% end %>
+  
+  <div class="d-flex justify-content-center">
+    <%= paginate @comments, theme: 'bootstrap-5' %>
+ 	</div>
+
+  <div class="guest-form">
+    <%= form_with model: [@room, @comment], url: public_room_comments_path(@room), local: true do |f| %>
+      <%= f.label "コメントを投稿する" %>
+      <%= f.text_area :comment, rows:'5', placeholder: "コメントをここに", class: "form-control my-3" %>
+      <div class="text-right">
+        <%= f.submit "コメントする", class: 'btn btn-primary text-white' %>
+      </div>
+    <% end %>
+    <!--ゲストユーザーの場合オーバーレイを表示-->
+    <div class="overlay">
+      <div class="message">コメントは会員限定です</div>
+    </div>
+  </div>
 </div>
 
 <script>
