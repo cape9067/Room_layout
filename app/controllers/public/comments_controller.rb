@@ -8,11 +8,11 @@ class Public::CommentsController < ApplicationController
   @comment.room_id = @room.id
   respond_to do |format|
   if @comment.save
-   flash[:success] =  "コメントの投稿に成功しました。"
+   flash.now[:success] =  "コメントの投稿に成功しました。"
    format.html { redirect_to request.referer }
   format.js
   else
-   flash[:danger] ="コメントの投稿に失敗しました。"
+   flash.now[:danger] ="コメントの投稿に失敗しました。"
      format.html { redirect_to request.referer }
   format.js
   end

@@ -1,7 +1,7 @@
 <div class="container-fluid">
-	<%= render 'layouts/flash'%>
   <div class="row">
     <div class="col-9 mt-4">
+    	<%= render 'layouts/flash'%>
     	<div class="row">
     	<div class="col-md-6 h2 m-4 font-weight-bold">
         投稿一覧<small><small>(全<%= @rooms.total_count %>件)</small></small>
@@ -22,7 +22,7 @@
  		  </div>
 		</div>
 
-		<div class="col-md-3 bg-primary p-4">
+		<div class="col-md-3 p-4">
 			<%= render 'side', categories: @categories, rooms: @latest_rooms %>
 		</div>
 	</div>

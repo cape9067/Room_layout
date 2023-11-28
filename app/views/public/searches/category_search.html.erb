@@ -11,9 +11,9 @@
     並び替え
   </a>
   <div class="dropdown-menu">
-    <p class="dropdown-item"><%= link_to '新着順', public_rooms_path(sort: 'newest') %></p>
-    <p class="dropdown-item"><%= link_to 'いいね数順', public_rooms_path(sort: 'likes') %></p>
-    <p class="dropdown-item"><%= link_to 'ブックマーク数順', public_rooms_path(sort: 'bookmarks') %></p>
+    <p class="dropdown-item"><%= link_to '新着順', public_category_search_path(sort: 'newest', category_id: params[:category_id]) %></p>
+    <p class="dropdown-item"><%= link_to 'いいね数順', public_category_search_path(sort: 'likes', category_id: params[:category_id]) %></p>
+    <p class="dropdown-item"><%= link_to 'ブックマーク数順', public_category_search_path(sort: 'bookmarks', category_id: params[:category_id]) %></p>
   </div>
 </div>
 </div>
@@ -34,7 +34,7 @@
       </div>
     </div>
 
-    <div class="col-md-3 bg-primary p-4">
+    <div class="col-md-3 p-4">
 	    <%= render 'public/rooms/side', categories: @categories, rooms: @latest_rooms %>
     </div>
   </div>

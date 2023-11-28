@@ -5,8 +5,8 @@
       </div>
     </div>
 <h4 class="my-5">"<%= @room.title %>"のコメント一覧(<%= @comments.count %>件)</h4>
-<%= render 'layouts/errors', obj: @comment %>
 <%= render 'layouts/flash'%>
+<%= render 'layouts/errors', obj: @comment %>
 <hr>
 <% @comments.each do |comment| %>
 <p>

@@ -25,7 +25,7 @@ class Public::BookmarksController < ApplicationController
   
  def ensure_guest_user
    if current_user.guest_user?
-     redirect_to request.referer, notice: "会員限定の機能です。"
+     redirect_to request.referer, alert: "会員限定の機能です。"
    end
  end
 

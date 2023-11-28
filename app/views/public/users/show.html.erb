@@ -29,7 +29,7 @@
           <li class="nav-item">
             <% if @user.guest_user? %>
             <div class="nav-link disabled">
-                <i class="fa-solid fa-newspaper mr-3"></i>投稿記事
+              <i class="fa-solid fa-newspaper mr-3"></i>投稿記事
             </div>
             <% else %>
             <div class="nav-link">
@@ -53,11 +53,17 @@
             <% end %>
           </li>
           <li class="nav-item">
+            <% if @user.guest_user? %>
+            <div class="nav-link disabled">
+              <i class="fa-solid fa-gear mr-3"></i>プロフィール編集
+            </div>
+            <% else %>
             <div class="nav-link">
               <%= link_to edit_public_user_path(@user) do %>
                 <i class="fa-solid fa-gear mr-3"></i>プロフィール編集
               <% end %>
             </div>
+            <% end %>
           </li>
         </ul>
       </div>

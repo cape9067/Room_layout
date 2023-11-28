@@ -9,7 +9,7 @@
 	    <%= link_to 'ブックマーク数順', public_search_path(sort: 'bookmarks', query: params[:query]), class: "btn btn-secondary rounded-pill mx-2 text-white" %>
 	  </div>
 	</div>
-	
+
 	<hr>
 
 	<div class="row" id="room-index">
@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <div class="col-md-3 bg-primary p-4">
+    <div class="col-md-3 p-4">
 	<%= render 'public/rooms/side', categories: @categories, rooms: @latest_rooms %>
     </div>
   </div>
