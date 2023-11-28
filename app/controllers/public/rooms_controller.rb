@@ -43,7 +43,7 @@ class Public::RoomsController < ApplicationController
         flash[:success] = "投稿されました！"
       redirect_to public_rooms_path
       else
-        flash[:danger] = "投稿に失敗しました"
+        flash.now[:danger] = "投稿に失敗しました"
         @categories = Category.all
         render 'new'
       end

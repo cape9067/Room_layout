@@ -22,8 +22,11 @@
           <%= category.name %>
           <% end %>
         </div>
-    </div>
-      <%= f.submit :投稿, class: "btn btn-success rounded-pill form-control w-100", :confirm => "Are you sure?"%>
+        <div class="text-center text-red my-4 font-weight-bold" style="color: red;">
+          <u>※個人情報が含まれていないことを確認してください※</u>
+        </div>
+        <%= f.submit :投稿, class: "btn btn-success rounded-pill form-control w-100" %>
       <% end %>
+    </div>
   </div>
 </div>

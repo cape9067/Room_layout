@@ -18,11 +18,11 @@
     </div>
     <hr class="d-none">
     <% if comment.user == current_user %>
-       <%= link_to public_room_comment_path(room, comment), method: :delete, remote: true do %>
-         <div class="text-right">
-           <button class="btn btn-outline-secondary">削除する</button>
-       <% end %>
-         </div>
+      <%= link_to public_room_comment_path(room, comment), method: :delete, remote: true do %>
+        <div class="text-right">
+          <button class="btn btn-outline-secondary">削除する</button>
+        </div>
+      <% end %>
     <% end %>
     <hr>
   </div>
