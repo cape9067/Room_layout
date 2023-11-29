@@ -13,7 +13,7 @@
             <div class="dropdown-menu">
               <p class="dropdown-item"><%= link_to '新着順', public_search_path(sort: 'newest', query: params[:query]) %></p>
               <p class="dropdown-item"><%= link_to 'いいね数順', public_search_path(sort: 'likes', query: params[:query]) %></p>
-              <p class="dropdown-item"><%= link_to 'ブックマーク数順', public_category_search_path(sort: 'bookmarks', query: params[:query]) %></p>
+              <p class="dropdown-item"><%= link_to 'ブックマーク数順', public_search_path(sort: 'bookmarks', query: params[:query]) %></p>
             </div>
           </div>
         </div>
