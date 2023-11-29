@@ -1,24 +1,42 @@
-# README
+# へやもよう
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
 
-Things you may want to cover:
+### サイトテーマ
+  ・部屋やオフィス、店舗のレイアウトを共有できるwebサイト。
+  
+### テーマを選んだ理由
+ 私は頻繁に部屋の模様替えを行うのですが、その際にどのようなテーマを持って模様替えを行うかという点はネタ切れになることがあり、アイデアが浮かばないという問題が多々あります。<br>
+ また、前職の時に新しく法人を立ち上げる顧客から事務所の良いレイアウトが思いつかないという悩みを相談されたこともありました。<br>
+ 個人の部屋よりもオフィスや事務所のレイアウトを考えるのは難しいことがあります。<br>
+ そのような時に、様々な部屋のレイアウトを見ることができるアプリがあれば非常に便利だと考えました。<br>
+ 同様の悩みを抱える人はSNS上でも多いため、このテーマに決めました。
+  
+​
+### ターゲットユーザ
+　・引っ越したばかりの学生や社会人<br>
+　・模様替えを考えている人<br> 
+　・新しく商業施設を構えることを考えている企業、個人事業主​
+​
+### 主な利用シーン
+  ・引っ越し先にどの家具を持って行くか考える時、買う時 <br>
+　・レイアウトを考える時​​
+  
+## 設計書
+  ・アプリケーション詳細設計
+  ・ER図
+## 機能一覧
 
-* Ruby version
 
-* System dependencies
+## 工夫した点
+　・FontAwesomeを使用し、視覚的に分かりやすくしました。<br>
+　・全体的に色の統一を図りました。<br>
+　・ゲストユーザーが誰であっても「いいね」ができ、既存のユーザーがいいね数を不正出来ないようにIDでは無く、IPアドレスで制限をかけました。
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
+​
