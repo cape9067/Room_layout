@@ -23,10 +23,9 @@
 　・レイアウトを考える時​​
   
 ## 設計書
-　・アプリケーション詳細設計
-　・ER図
-## 機能一覧
 
+## 機能一覧
+(https://docs.google.com/spreadsheets/d/1igkVJ-uxja7mNcHCMKhzhTyRGXgdOOZyU-EXZBAAdIs/edit#gid=885378170)
 
 ## 工夫した点
 　・FontAwesomeを使用し、視覚的に分かりやすくしました。<br>
