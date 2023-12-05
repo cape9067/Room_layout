@@ -155,3 +155,7 @@
  color: white;
  text-align: center;
 }
+
+.partial-image, .card-img {
+ object-fit: cover;
+}
