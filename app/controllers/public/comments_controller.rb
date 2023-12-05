@@ -24,12 +24,13 @@ class Public::CommentsController < ApplicationController
   @comment = @room.comments.find(params[:id])
   if @comment.user == current_user
    @comment.destroy
+   flash.now[:success] =  "コメントを削除しました。"
    respond_to do |format|
      format.html { redirect_to request.referer }
      format.js
    end
   else
-   flash[:danger] = "本人以外はコメントを削除できません。"
+   flash.now[:danger] = "本人以外はコメントを削除できません。"
    redirect_to request.referer
   end
  end
