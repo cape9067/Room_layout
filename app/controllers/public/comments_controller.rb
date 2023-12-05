@@ -22,11 +22,16 @@ class Public::CommentsController < ApplicationController
  def destroy
   @room = Room.find(params[:room_id])
   @comment = @room.comments.find(params[:id])
-  respond_to do |format|
-  @comment.destroy
-  format.html { redirect_to request.referer }
-  format.js
- end
+  if @comment.user == current_user
+   @comment.destroy
+   respond_to do |format|
+     format.html { redirect_to request.referer }
+     format.js
+   end
+  else
+   flash[:danger] = "本人以外はコメントを削除できません。"
+   redirect_to request.referer
+  end
  end
 
  def index

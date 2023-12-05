@@ -62,7 +62,7 @@ class Public::RoomsController < ApplicationController
 
   def destroy
     flash[:success] = "投稿を削除しました。"
-    @room = Room.find(params[:id])
+    @room = current_user.rooms.find(params[:id])
     @room.destroy
     redirect_to public_rooms_path
   end
